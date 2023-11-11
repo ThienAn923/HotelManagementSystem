@@ -943,7 +943,7 @@ public class HoltelMag extends javax.swing.JFrame {
         // TODO add your handling code here:
 //        System.err.println("Yay");
         PasswordRequireForm prf = new PasswordRequireForm();
-        prf.setTitle("Nhập mật khẩu");
+        prf.setTitle("Nhập mật khẩu eei");
         prf.setVisible(true);
         prf.setDefaultCloseOperation(prf.EXIT_ON_CLOSE);
         
