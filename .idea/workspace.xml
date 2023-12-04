@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="90d68ce3-23fe-404d-a234-6365c3a7648c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/build/classes/CreateAdminAccout$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/CreateAdminAccout$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/CreateAdminAccout.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/CreateAdminAccout.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$10.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$3.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$5.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$6.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$7.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$8.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag$9.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/HoltelMag.form" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/HoltelMag.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ThemNhanVien$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ThemNhanVien$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/ThemNhanVien.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/ThemNhanVien.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build/classes/javaapplication4/JavaApplication4.class" beforeDir="false" afterPath="$PROJECT_DIR$/build/classes/javaapplication4/JavaApplication4.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/private/private.xml" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/private/private.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/nbproject/project.properties" beforeDir="false" afterPath="$PROJECT_DIR$/nbproject/project.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HoltelMag.form" beforeDir="false" afterPath="$PROJECT_DIR$/src/HoltelMag.form" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HoltelMag.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/HoltelMag.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2Z2Ixam3HBFmMmF70nObQLzohli" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "e0b5f02e",
+    "last_opened_file_path": "D:/CTU/Java/HoltelMag (2)/HoltelMag/JavaApplication4",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="90d68ce3-23fe-404d-a234-6365c3a7648c" name="Changes" comment="" />
+      <created>1701613994838</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1701613994838</updated>
+      <workItem from="1701613995967" duration="37000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
