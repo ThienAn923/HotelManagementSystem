@@ -1,11 +1,14 @@
 
+import java.awt.Color;
 import java.sql.Connection;
-import java.sql.Date;
+//import java.sql.Date;
+import java.util.Date;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -355,7 +358,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jButton18 = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         kGradientPanel27 = new keeptoo.KGradientPanel();
-        jLabel96 = new javax.swing.JLabel();
         jLabel97 = new javax.swing.JLabel();
         jTextField58 = new javax.swing.JTextField();
         jLabel98 = new javax.swing.JLabel();
@@ -368,7 +370,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel20 = new javax.swing.JPanel();
         jPanel21 = new javax.swing.JPanel();
         kGradientPanel24 = new keeptoo.KGradientPanel();
-        jLabel57 = new javax.swing.JLabel();
         jLabel58 = new javax.swing.JLabel();
         jTextField31 = new javax.swing.JTextField();
         jLabel59 = new javax.swing.JLabel();
@@ -378,14 +379,12 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jTextField32 = new javax.swing.JTextField();
         jPanel26 = new javax.swing.JPanel();
         kGradientPanel17 = new keeptoo.KGradientPanel();
-        jLabel52 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jTextField30 = new javax.swing.JTextField();
         jLabel54 = new javax.swing.JLabel();
         jButton31 = new javax.swing.JButton();
         jButton32 = new javax.swing.JButton();
         jLabel55 = new javax.swing.JLabel();
-        jLabel56 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 102, 0));
@@ -900,11 +899,11 @@ public class HoltelMagReal extends javax.swing.JFrame {
             TrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(TrangChuLayout.createSequentialGroup()
                 .addGroup(TrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ThongTinPhong_TK, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                    .addComponent(ThongTinKhach_TK, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE))
+                    .addComponent(ThongTinPhong_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 290, Short.MAX_VALUE)
+                    .addComponent(ThongTinKhach_TK, javax.swing.GroupLayout.PREFERRED_SIZE, 290, Short.MAX_VALUE))
                 .addGap(0, 1, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 565, Short.MAX_VALUE)
         );
 
         MainTabblePane.addTab("Thông Tin Phòng", TrangChu);
@@ -1088,7 +1087,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 396, Short.MAX_VALUE)
             .addComponent(kGradientPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
@@ -2219,7 +2218,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addComponent(ThongTinPhong_TK1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 565, Short.MAX_VALUE)
         );
 
         MainTabblePane.addTab("Thanh Toán", jPanel2);
@@ -2253,7 +2252,15 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel6.setText("Tìm Kiếm Nhân Viên:");
 
         jTextField2.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField2.setText("Mã Nhân Viên:");
+        jTextField2.setText("Mã Nhân Viên");
+        jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField2FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField2FocusLost(evt);
+            }
+        });
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
@@ -2441,29 +2448,31 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null},
-                {null},
-                {null},
-                {null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mô Tả"
+                "ID Nhân Viên", "Tên Nhân Viên", "Email", "Lương", "Ngày Sinh", "Giới Tính", "Chức Vụ"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false
+                false, false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        jTable2.setPreferredSize(new java.awt.Dimension(75, 48));
         jScrollPane1.setViewportView(jTable2);
 
         jTextArea1.setColumns(20);
-        jTextArea1.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jTextArea1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea1.setLineWrap(true);
         jTextArea1.setRows(5);
-        jTextArea1.setText("MFing TextField right hereeeee\n");
         jScrollPane3.setViewportView(jTextArea1);
 
         javax.swing.GroupLayout jPanel83Layout = new javax.swing.GroupLayout(jPanel83);
@@ -2476,10 +2485,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel83Layout.setVerticalGroup(
             jPanel83Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel83Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
         );
 
         kGradientPanel15.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -2536,6 +2544,11 @@ public class HoltelMagReal extends javax.swing.JFrame {
         });
 
         jButton2.setText("Clear");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Refresh");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -2619,7 +2632,15 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel22.setText("Tìm Kiếm Phòng:");
 
         jTextField3.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField3.setText("Mã Phòng:");
+        jTextField3.setText("Mã Phòng");
+        jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField3FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextField3FocusLost(evt);
+            }
+        });
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -2750,18 +2771,26 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jScrollPane5.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane5.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTable4.setForeground(new java.awt.Color(255, 255, 255));
+        jTable4.setForeground(new java.awt.Color(0, 0, 0));
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Phòng", "Tên Phòng", "Trạng Thái Phòng", "Giá Phòng", "ID Tầng", "ID Khu Vực", "ID Loại"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, false, true, false, false, false, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane5.setViewportView(jTable4);
 
         javax.swing.GroupLayout jPanel73Layout = new javax.swing.GroupLayout(jPanel73);
@@ -2830,22 +2859,33 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jTable7.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Phòng", "Tên Phòng", "Trạng Thái Phòng", "Giá Phòng", "ID Tầng", "ID Khu Vực", "ID Loại"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable7.setPreferredSize(new java.awt.Dimension(525, 48));
         jScrollPane2.setViewportView(jTable7);
 
         jTextArea2.setColumns(20);
-        jTextArea2.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jTextArea2.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
-        jTextArea2.setText("MFing TextField right hereeeee\n");
         jScrollPane8.setViewportView(jTextArea2);
+        jTextArea2.setEditable(false);
 
         javax.swing.GroupLayout jPanel76Layout = new javax.swing.GroupLayout(jPanel76);
         jPanel76.setLayout(jPanel76Layout);
@@ -2857,9 +2897,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel76Layout.setVerticalGroup(
             jPanel76Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel76Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 115, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE)
                 .addGap(0, 0, 0))
         );
 
@@ -2910,16 +2950,46 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel12.setkStartColor(new java.awt.Color(68, 168, 110));
 
         jButton4.setText("Thêm Phòng");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setText("Thêm Loại Phòng");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Thêm Tầng");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setText("Thêm Khu Vực");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setText("Clear");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
 
         jButton9.setText("Làm Mới");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         jButton11.setText("Danh Sách Tầng");
 
@@ -3030,6 +3100,11 @@ public class HoltelMagReal extends javax.swing.JFrame {
         });
 
         jButton26.setText("Tìm Kiếm");
+        jButton26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton26ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel60Layout = new javax.swing.GroupLayout(jPanel60);
         jPanel60.setLayout(jPanel60Layout);
@@ -3117,18 +3192,26 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jScrollPane6.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane6.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTable5.setForeground(new java.awt.Color(255, 255, 255));
+        jTable5.setForeground(new java.awt.Color(0, 0, 0));
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Dịch Vụ", "Tên Dịch Vụ", "Giá "
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane6.setViewportView(jTable5);
 
         javax.swing.GroupLayout jPanel65Layout = new javax.swing.GroupLayout(jPanel65);
@@ -3197,21 +3280,31 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jTable8.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Dịch Vụ", "Tên Dịch Vụ", "Giá"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable8.setPreferredSize(new java.awt.Dimension(75, 48));
         jScrollPane9.setViewportView(jTable8);
 
         jTextArea3.setColumns(20);
-        jTextArea3.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jTextArea3.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea3.setLineWrap(true);
         jTextArea3.setRows(5);
-        jTextArea3.setText("MFing TextField right hereeeee\n");
         jScrollPane10.setViewportView(jTextArea3);
 
         javax.swing.GroupLayout jPanel69Layout = new javax.swing.GroupLayout(jPanel69);
@@ -3224,10 +3317,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel69Layout.setVerticalGroup(
             jPanel69Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel69Layout.createSequentialGroup()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane10, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
         );
 
         kGradientPanel7.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -3277,10 +3369,25 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel8.setkStartColor(new java.awt.Color(68, 168, 110));
 
         jButton10.setText("Thêm Dịch Vụ");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
 
         jButton13.setText("Clear");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
 
         jButton14.setText("Làm Mới");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel8Layout = new javax.swing.GroupLayout(kGradientPanel8);
         kGradientPanel8.setLayout(kGradientPanel8Layout);
@@ -3357,7 +3464,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel25.setText("Tìm Kiếm Khuyến Mãi:");
 
         jTextField6.setBackground(new java.awt.Color(245, 245, 245));
-        jTextField6.setText("Mã Khuyến Mãi:");
+        jTextField6.setText("KM001");
         jTextField6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField6ActionPerformed(evt);
@@ -3466,18 +3573,26 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jScrollPane7.setBackground(new java.awt.Color(255, 255, 255));
         jScrollPane7.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTable6.setForeground(new java.awt.Color(255, 255, 255));
+        jTable6.setForeground(new java.awt.Color(0, 0, 0));
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID Khuyến Mãi", "Tên Khuyến Mãi", "Ngày Bắt Đầu", "Ngày Kết Thúc", "Tỷ Lệ Giảm"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane7.setViewportView(jTable6);
 
         javax.swing.GroupLayout jPanel61Layout = new javax.swing.GroupLayout(jPanel61);
@@ -3544,24 +3659,36 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jScrollPane11.setForeground(new java.awt.Color(255, 255, 255));
 
+        jTable9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable9.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã Khuyến Mãi", "Tên Khuyến Mãi", "Ngày Bắt Đầu", "Ngày Kết Thúc", "Tỷ Lệ"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable9.setPreferredSize(new java.awt.Dimension(375, 48));
         jScrollPane11.setViewportView(jTable9);
 
         jTextArea4.setColumns(20);
-        jTextArea4.setForeground(new java.awt.Color(255, 255, 255));
+        jTextArea4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jTextArea4.setForeground(new java.awt.Color(0, 0, 0));
+        jTextArea4.setLineWrap(true);
         jTextArea4.setRows(5);
-        jTextArea4.setText("MFing TextField right hereeeee\n");
         jScrollPane12.setViewportView(jTextArea4);
+        jTextArea4.setEditable(false);
 
         javax.swing.GroupLayout jPanel66Layout = new javax.swing.GroupLayout(jPanel66);
         jPanel66.setLayout(jPanel66Layout);
@@ -3573,10 +3700,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel66Layout.setVerticalGroup(
             jPanel66Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel66Layout.createSequentialGroup()
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 119, Short.MAX_VALUE))
         );
 
         kGradientPanel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -3626,12 +3752,32 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel4.setkStartColor(new java.awt.Color(68, 168, 110));
 
         jButton15.setText("Thêm Khuyến Mãi");
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton16.setText("Clear");
+        jButton16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton16ActionPerformed(evt);
+            }
+        });
 
         jButton17.setText("Làm Mới");
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton18.setText("khuyến Mãi Còn Hiệu Lực");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout kGradientPanel4Layout = new javax.swing.GroupLayout(kGradientPanel4);
         kGradientPanel4.setLayout(kGradientPanel4Layout);
@@ -3705,8 +3851,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel27.setkGradientFocus(0);
         kGradientPanel27.setkStartColor(new java.awt.Color(61, 192, 96));
 
-        jLabel96.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/padlock.png"))); // NOI18N
-
         jLabel97.setForeground(new java.awt.Color(255, 255, 255));
         jLabel97.setText("Nhập Mật Khẩu:");
 
@@ -3728,14 +3872,11 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel27Layout.setHorizontalGroup(
             kGradientPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel27Layout.createSequentialGroup()
-                .addContainerGap(510, Short.MAX_VALUE)
+                .addContainerGap(511, Short.MAX_VALUE)
                 .addGroup(kGradientPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel27Layout.createSequentialGroup()
                         .addComponent(jLabel98)
                         .addGap(485, 485, 485))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel27Layout.createSequentialGroup()
-                        .addComponent(jLabel96)
-                        .addGap(572, 572, 572))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel27Layout.createSequentialGroup()
                         .addComponent(jButton48)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3753,9 +3894,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel27Layout.setVerticalGroup(
             kGradientPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel27Layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(jLabel96)
-                .addGap(18, 18, 18)
+                .addGap(261, 261, 261)
                 .addComponent(jLabel98)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel99)
@@ -3769,7 +3908,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGroup(kGradientPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton48)
                     .addComponent(jButton47))
-                .addContainerGap(158, Short.MAX_VALUE))
+                .addContainerGap(146, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel25Layout = new javax.swing.GroupLayout(jPanel25);
@@ -3845,8 +3984,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel24.setkGradientFocus(0);
         kGradientPanel24.setkStartColor(new java.awt.Color(61, 192, 96));
 
-        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/padlock.png"))); // NOI18N
-
         jLabel58.setForeground(new java.awt.Color(255, 255, 255));
         jLabel58.setText("Nhập Mật Khẩu:");
 
@@ -3874,9 +4011,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
                         .addComponent(jLabel59)
                         .addGap(485, 485, 485))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel24Layout.createSequentialGroup()
-                        .addComponent(jLabel57)
-                        .addGap(572, 572, 572))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel24Layout.createSequentialGroup()
                         .addComponent(jButton34)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton33)
@@ -3893,9 +4027,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel24Layout.setVerticalGroup(
             kGradientPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel24Layout.createSequentialGroup()
-                .addGap(192, 192, 192)
-                .addComponent(jLabel57)
-                .addGap(18, 18, 18)
+                .addGap(261, 261, 261)
                 .addComponent(jLabel59)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel60)
@@ -3909,7 +4041,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGroup(kGradientPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton34)
                     .addComponent(jButton33))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
@@ -3929,8 +4061,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel17.setkGradientFocus(0);
         kGradientPanel17.setkStartColor(new java.awt.Color(61, 192, 96));
 
-        jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/padlock.png"))); // NOI18N
-
         jLabel53.setForeground(new java.awt.Color(255, 255, 255));
         jLabel53.setText("Nhập Mật Khẩu:");
 
@@ -3944,8 +4074,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jLabel55.setForeground(new java.awt.Color(255, 255, 255));
         jLabel55.setText("User: xxxxxx");
-
-        jLabel56.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Picture/user.png"))); // NOI18N
 
         javax.swing.GroupLayout kGradientPanel17Layout = new javax.swing.GroupLayout(kGradientPanel17);
         kGradientPanel17.setLayout(kGradientPanel17Layout);
@@ -3961,32 +4089,23 @@ public class HoltelMagReal extends javax.swing.JFrame {
                     .addGroup(kGradientPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel53)
                         .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(441, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel17Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(487, Short.MAX_VALUE)
                 .addGroup(kGradientPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel54)
                         .addGap(485, 485, 485))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel17Layout.createSequentialGroup()
-                        .addComponent(jLabel52)
-                        .addGap(572, 572, 572))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel17Layout.createSequentialGroup()
-                        .addGroup(kGradientPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel55)
-                            .addComponent(jLabel56))
+                        .addComponent(jLabel55)
                         .addGap(24, 24, 24))))
         );
         kGradientPanel17Layout.setVerticalGroup(
             kGradientPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(kGradientPanel17Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel56)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(62, 62, 62)
                 .addComponent(jLabel55)
-                .addGap(148, 148, 148)
-                .addComponent(jLabel52)
-                .addGap(18, 18, 18)
+                .addGap(217, 217, 217)
                 .addComponent(jLabel54)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel53)
@@ -3996,7 +4115,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGroup(kGradientPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton31)
                     .addComponent(jButton32))
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(181, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
@@ -4123,11 +4242,54 @@ public class HoltelMagReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton46ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
+        // Tim kiem khuyen mai
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            DefaultTableModel model = (DefaultTableModel) jTable9.getModel(); // get the table
+            model.setRowCount(0); // clean the whole table
+            DateFormat sd = new SimpleDateFormat("yyyy-mm-dd");
+
+            String ID = "'" + jTextField6.getText() + "'"; // lay ID cua DV
+            String query = "SELECT * FROM khuyenmai WHERE maKM = ";
+            String motaSQL = query.concat(ID); // Ket noi ID vao sql
+            
+            System.out.println(motaSQL);
+            ResultSet rs = st.executeQuery(motaSQL);
+                
+            rs.next();
+            String maKM = rs.getString(1);
+            String tenKM = rs.getString(2);
+            Date BD = rs.getDate(3);
+            String ngayBD = sd.format(BD);
+            Date KT = rs.getDate(4);
+            String ngayKT = sd.format(KT);
+            String TL = rs.getString(5);
+            String mota = rs.getString(6);
+
+            String[] row = {maKM, tenKM, ngayBD, ngayKT, TL};
+            model.addRow(row);
+
+            if (mota.equals(""))
+                jTextArea4.setText("Không có mô tả");
+            else jTextArea4.setText(mota);
+            
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            if ("Illegal operation on empty result set.".equals(e.getMessage())) {
+                // Kiem tra su ton tai cua nhan vien
+                JOptionPane.showMessageDialog(null, "Khuyến mãi không tồn tại!");
+            }
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
@@ -4151,7 +4313,48 @@ public class HoltelMagReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
+        // Tim kiem phong
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            DefaultTableModel model = (DefaultTableModel) jTable7.getModel(); // get the table
+            model.setRowCount(0);
+
+            String IDPhong = "'" + jTextField3.getText() + "'"; // lay ID cua Phong
+            String query = "SELECT * FROM Phong WHERE IDPhong = ";
+            String motaSQL = query.concat(IDPhong); // Ket noi ID phong vao sql
+            System.out.println(motaSQL);
+            ResultSet rs = st.executeQuery(motaSQL);
+            
+            rs.next();
+            String ID = rs.getString(1);
+            String tenPhong = rs.getString(2);
+            String trangThaiPhong = rs.getString(3);
+            String giaPhong = rs.getString(4);
+            String IDTang = rs.getString(5);
+            String IDKV = rs.getString(6);
+            String IDLoai = rs.getString(7);
+            String mota = rs.getString(8);
+
+            String[] row = {ID, tenPhong, trangThaiPhong, giaPhong, IDTang, IDKV, IDLoai};
+            model.addRow(row);
+            
+            
+            if (mota.equals(""))
+                jTextArea2.setText("Không có mô tả");
+            else jTextArea2.setText(mota);
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            if ("Illegal operation on empty result set.".equals(e.getMessage())) {
+                // Kiem tra su ton tai cua nhan vien
+                JOptionPane.showMessageDialog(null, "Phòng không tồn tại!");
+            }
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -4203,9 +4406,13 @@ public class HoltelMagReal extends javax.swing.JFrame {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
             Statement st = (Statement) con.createStatement();
+            DefaultTableModel model = (DefaultTableModel) jTable2.getModel(); // get the table
+            model.setRowCount(0);
+            
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
 
             String maNV = "'" + jTextField2.getText() + "';";
-            String query = "SELECT moTaNV FROM nhanvien WHERE IDNV = ";
+            String query = "SELECT * FROM nhanvien WHERE IDNV = ";
             String full = query.concat(maNV);
             System.out.println(full);
             ResultSet rs = st.executeQuery(full);
@@ -4213,17 +4420,23 @@ public class HoltelMagReal extends javax.swing.JFrame {
             table2.setRowCount(0);
             
             rs.next();
-            String mota = rs.getString(1);
-            
-//            String[] row = {mota};
-//            table2.addRow(row);
-//            
+            String IDNV = rs.getString(1);
+            String tenNV = rs.getString(2);
+            String emailNV = rs.getString(3);
+            String luongNV = rs.getString(4);
+            Date birthday = rs.getDate(5);
+            String ngaySinhNV = dateFormat.format(birthday); // chuyen Date thanh String
+            String gioiTinhNV = rs.getString(6);
+            String tenCV = rs.getString(7);
+            String mota = rs.getString(8);
 
-           
+            String[] row = {IDNV, tenNV, emailNV, luongNV, ngaySinhNV, gioiTinhNV, tenCV};
+            model.addRow(row);
+            
+            
             if (mota.equals(""))
                 jTextArea1.setText("Không có mô tả");
             else jTextArea1.setText(mota);
-            
             
             st.close();
             con.close();
@@ -4248,6 +4461,305 @@ public class HoltelMagReal extends javax.swing.JFrame {
         them.setLocationRelativeTo(null);
         them.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // Clear
+        DefaultTableModel model = (DefaultTableModel) jTable3.getModel(); // get the table
+        model.setRowCount(0);
+        DefaultTableModel model2 = (DefaultTableModel) jTable2.getModel(); // get the table
+        model2.setRowCount(0);
+        jTextArea1.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // Lam moi Phong
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String query = "SELECT IDPhong, tenPhong, trangThaiPhong, giaPhong, IDTang, IDKhuVuc, IDLoai FROM phong";
+            // query khong xuong hang duoc
+            ResultSet rs = st.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) jTable4.getModel(); // get the table
+
+            String IDPhong, tenPhong, trangThaiPhong, giaPhong, IDTang, IDKV, IDLoai;
+            
+            model.setRowCount(0); // clean the whole table
+            //This part is to get the whole data table
+            while(rs.next()){
+                IDPhong = rs.getString(1);
+                tenPhong = rs.getString(2);
+                trangThaiPhong = rs.getString(3);
+                giaPhong = rs.getString(4);
+                IDTang = rs.getString(5);
+                IDKV = rs.getString(6);
+                IDLoai = rs.getString(7);
+
+                String[] row = {IDPhong, tenPhong, trangThaiPhong, giaPhong, IDTang, IDKV, IDLoai};
+                model.addRow(row);
+            }
+
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // Them Phong
+        ThemPhong newPhong = new ThemPhong();
+        newPhong.setDefaultCloseOperation(newPhong.DISPOSE_ON_CLOSE);
+        newPhong.setLocationRelativeTo(null);
+        newPhong.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // Them Dich Vu
+        ThemDichVu dv = new ThemDichVu();
+        dv.setDefaultCloseOperation(dv.DISPOSE_ON_CLOSE);
+        dv.setLocationRelativeTo(null);
+        dv.setVisible(true);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // Them Khu Vuc
+        ThemKhuVuc kv = new ThemKhuVuc();
+        kv.setDefaultCloseOperation(kv.DISPOSE_ON_CLOSE);
+        kv.setLocationRelativeTo(null);
+        kv.setVisible(true);
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        // Them Khuyen Mai
+        ThemKM km = new ThemKM();
+        km.setDefaultCloseOperation(km.DISPOSE_ON_CLOSE);
+        km.setLocationRelativeTo(null);
+        km.setVisible(true);
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // Them Loai Phong
+        ThemLoaiPhong LP = new ThemLoaiPhong();
+        LP.setDefaultCloseOperation(LP.DISPOSE_ON_CLOSE);
+        LP.setLocationRelativeTo(null);
+        LP.setVisible(true);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // Them Tang
+        ThemTang t = new ThemTang();
+        t.setDefaultCloseOperation(t.DISPOSE_ON_CLOSE);
+        t.setLocationRelativeTo(null);
+        t.setVisible(true);
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTextField2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusGained
+        // TODO add your handling code here:
+        if (jTextField2.getText().equals("Mã Nhân Viên")) {
+            jTextField2.setText("");
+            jTextField2.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_jTextField2FocusGained
+
+    private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
+        // TODO add your handling code here: Mã Nhân Viên
+        if (jTextField2.getText().equals("")) {
+            jTextField2.setText("Mã Nhân Viên");
+            jTextField2.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_jTextField2FocusLost
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // Clear
+        DefaultTableModel model = (DefaultTableModel) jTable4.getModel(); // get the table
+        model.setRowCount(0);
+        DefaultTableModel model2 = (DefaultTableModel) jTable7.getModel(); // get the table
+        model2.setRowCount(0);
+        jTextArea2.setText("");
+    }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
+        // TODO add your handling code here: Mã Phòng
+        if (jTextField3.getText().equals("Mã Phòng")) {
+            jTextField3.setText("");
+            jTextField3.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_jTextField3FocusGained
+
+    private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
+        // TODO add your handling code here:
+        if (jTextField3.getText().equals("")) {
+            jTextField3.setText("Mã Phòng");
+            jTextField3.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_jTextField3FocusLost
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+        // Clear
+        DefaultTableModel model = (DefaultTableModel) jTable5.getModel(); // get the table
+        model.setRowCount(0);
+        DefaultTableModel model2 = (DefaultTableModel) jTable8.getModel(); // get the table
+        model2.setRowCount(0);
+        jTextArea3.setText("");
+    }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // Refresh
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String query = "SELECT IDdichVu, tenDichVu, giaDV FROM dichvu";
+            ResultSet rs = st.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) jTable5.getModel(); // get the table
+
+            String IDDV, tenDV, giaDV;
+            
+            model.setRowCount(0); // clean the whole table
+            //This part is to get the whole data table
+            while(rs.next()){
+                IDDV = rs.getString(1);
+                tenDV = rs.getString(2);
+                giaDV = rs.getString(3);
+
+                String[] row = {IDDV, tenDV, giaDV};
+                model.addRow(row);
+            }
+
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
+        // Tim kiem dich vu
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            DefaultTableModel model = (DefaultTableModel) jTable8.getModel(); // get the table
+            model.setRowCount(0);
+
+            String IDDV = "'" + jTextField5.getText() + "'"; // lay ID cua DV
+            String query = "SELECT * FROM dichvu WHERE IDdichVu = ";
+            String full = query.concat(IDDV); // Ket noi ID vao sql
+            System.out.println(full);
+            ResultSet rs = st.executeQuery(full);
+            
+            rs.next();
+            String id = rs.getString(1);
+            String tenDV = rs.getString(2);
+            String gia = rs.getString(3);
+            String mota = rs.getString(4);
+            
+            String[] row = {id, tenDV, gia};
+            model.addRow(row);
+            
+            if (mota.equals(""))
+                jTextArea3.setText("Không có mô tả");
+            else jTextArea3.setText(mota);
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            if ("Illegal operation on empty result set.".equals(e.getMessage())) {
+                // Kiem tra su ton tai cua nhan vien
+                JOptionPane.showMessageDialog(null, "Dịch vụ không tồn tại!");
+            }
+            System.out.println(e.getMessage());
+        }
+    }//GEN-LAST:event_jButton26ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        // Refresh Khuyen mai
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String query = "SELECT maKM, tenKM, ngayBD, ngayKT, tyLe FROM khuyenmai";
+            ResultSet rs = st.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) jTable6.getModel(); // get the table
+
+            String maKM, tenKM, ngayBD, ngayKT, tyLe;
+            
+            model.setRowCount(0); // clean the whole table
+            //This part is to get the whole data table
+            while(rs.next()){
+                maKM = rs.getString(1);
+                tenKM = rs.getString(2);
+                ngayBD = rs.getString(3);
+                ngayKT = rs.getString(4);
+                tyLe = rs.getString(5);
+
+                String[] row = {maKM, tenKM, ngayBD, ngayKT, tyLe};
+                model.addRow(row);
+            }
+
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
+        // Clear KM
+        DefaultTableModel model = (DefaultTableModel) jTable6.getModel(); // get the table
+        model.setRowCount(0);
+        DefaultTableModel model2 = (DefaultTableModel) jTable9.getModel(); // get the table
+        model2.setRowCount(0);
+        jTextArea4.setText("");
+    }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+            String currentDate = sd.format(new Date()); // Lay string cua ngay hien tai
+            Date d1 = sd.parse(currentDate);     // Chuyen sang Date de co the so sanh 
+            System.out.println("test: " + currentDate);
+
+            String query = "SELECT maKM, tenKM, ngayBD, ngayKT, tyLe FROM khuyenmai";
+//            String dateKT = "SELECT ngayKT FROM khuyenmai";
+            ResultSet rs = st.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) jTable6.getModel(); // get the table
+
+            String maKM, tenKM, ngayBD, ngayKT, tyLe;
+            
+            model.setRowCount(0); // clean the whole table
+            //This part is to get the whole data table
+            while(rs.next()){
+                maKM = rs.getString(1);
+                tenKM = rs.getString(2);
+                ngayBD = rs.getString(3);
+                Date KT = rs.getDate(4);
+                ngayKT = sd.format(KT);  
+                tyLe = rs.getString(5);
+ 
+                if (KT.after(d1)) {
+                    String[] row = {maKM, tenKM, ngayBD, ngayKT, tyLe};
+                    model.addRow(row);
+                }
+
+            }
+
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }//GEN-LAST:event_jButton18ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4403,12 +4915,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel50;
     private javax.swing.JLabel jLabel51;
-    private javax.swing.JLabel jLabel52;
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
-    private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
@@ -4451,7 +4960,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel93;
     private javax.swing.JLabel jLabel94;
     private javax.swing.JLabel jLabel95;
-    private javax.swing.JLabel jLabel96;
     private javax.swing.JLabel jLabel97;
     private javax.swing.JLabel jLabel98;
     private javax.swing.JLabel jLabel99;

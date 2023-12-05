@@ -367,7 +367,7 @@ public class ThemNV extends javax.swing.JFrame {
         
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://192.168.2.45/hotelmanagement", "root", "");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
             Statement st = (Statement) con.createStatement();
             String test = "INSERT INTO nhanvien(IDNV, tenNV, emailNV, luongNV, ngaySinhNV, gioiTinhNV, maCV, moTaNV)" + "VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(test);
