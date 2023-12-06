@@ -1024,18 +1024,9 @@ public class HoltelMag extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Trang Chủ", jPanel2);
 
-        //B2110113 This code is here to change the event of "tabchange" to "Popup a frame"
-        jTabbedPane4.addChangeListener(new javax.swing.event.ChangeListener() {
-            public void stateChanged(javax.swing.event.ChangeEvent evt) {
-                jTabbedPane4StateChanged(evt);
-            }
-        });
         jTabbedPane4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTabbedPane4MouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jTabbedPane4MouseEntered(evt);
             }
         });
 
@@ -1118,13 +1109,21 @@ public class HoltelMag extends javax.swing.JFrame {
             jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
                 .addComponent(jPanel18, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(518, Short.MAX_VALUE))
+                .addContainerGap(483, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(jPanel17);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Thông Tin Chi Tiết"));
 
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+
+            }
+        ));
         jScrollPane6.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel38Layout = new javax.swing.GroupLayout(jPanel38);
