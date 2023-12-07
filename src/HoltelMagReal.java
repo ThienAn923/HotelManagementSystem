@@ -28,7 +28,7 @@ import javax.swing.table.DefaultTableModel;
  * @author HP
  */
 
-public class HoltelMagReal extends javax.swing.JFrame implements StaffChoosing.StaffChoosingInterface{
+public class HoltelMagReal extends javax.swing.JFrame implements StaffChoosing.StaffChoosingInterface, RoomChoosing.RoomChoosingInterface{
     //Global Values
     private static String login = new String();
     private static boolean Autho = false;
@@ -4499,8 +4499,20 @@ public class HoltelMagReal extends javax.swing.JFrame implements StaffChoosing.S
     }
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
         // TODO add your handling code here:
+        RoomChoosing rc = new RoomChoosing();
+        rc.setTitle("Chọn Nhân Viên");
+        rc.setDefaultCloseOperation(rc.DISPOSE_ON_CLOSE);
+        rc.setLocationRelativeTo(null);
+        rc.setVisible(true);
+        
+        rc.setRoomChoosingListener((RoomChoosing.RoomChoosingInterface) this);
+        
     }//GEN-LAST:event_jButton27ActionPerformed
-
+    public void onRoomSelected(String selectedRoom) {
+        // This method is called when jTable1MouseReleased event happens in StaffChoosing
+        System.out.println("IDNhanVien from StaffChoosing: " + selectedRoom);
+        jTextField3.setText(selectedRoom);
+    }
     /**
      * @param args the command line arguments
      */

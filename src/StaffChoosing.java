@@ -133,6 +133,11 @@ public class StaffChoosing extends javax.swing.JFrame {
 
         jLabel3.setText("Tìm Kiếm Bằng Email Nhân Viên:");
 
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
         jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField3KeyReleased(evt);
@@ -426,6 +431,10 @@ public class StaffChoosing extends javax.swing.JFrame {
         IDSearch();
     }//GEN-LAST:event_jTextField3KeyReleased
 
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -460,6 +469,7 @@ public class StaffChoosing extends javax.swing.JFrame {
             }
         });
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
