@@ -60,7 +60,7 @@ public class ThemKM extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Thêm Tầng");
+        jLabel1.setText("Thêm Khuyến Mãi");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -257,9 +257,7 @@ public class ThemKM extends javax.swing.JFrame {
             System.out.println(e);   
             if (e.getMessage().contains("Duplicate entry")) {
                 JOptionPane.showMessageDialog(null, "Mã khuyến mãi đã tồn tại");
-            } else if (e.getMessage().contains("a foreign key constraint fails")) {
-                JOptionPane.showMessageDialog(null, "Hãy nhập đúng mã khuyến mãi");
-            }
+            } 
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 

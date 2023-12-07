@@ -104,11 +104,6 @@
                   <EmptySpace pref="112" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="jLabel9" min="-2" pref="37" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
-                          <Component id="jRadioButton1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-                          <Component id="jRadioButton2" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <Component id="jLabel4" min="-2" pref="37" max="-2" attributes="0"/>
                       <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" min="-2" pref="76" max="-2" attributes="0"/>
@@ -118,7 +113,6 @@
                       <Component id="jLabel5" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
                       <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
                       <Component id="jLabel6" alignment="0" min="-2" pref="68" max="-2" attributes="0"/>
-                      <Component id="jLabel7" alignment="0" min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                       <Component id="jTextField7" alignment="0" max="32767" attributes="0"/>
@@ -126,6 +120,14 @@
                           <Component id="jTextField1" min="-2" pref="156" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                              <Component id="jRadioButton1" max="32767" attributes="0"/>
+                              <Component id="jLabel7" alignment="1" pref="61" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                          <Component id="jRadioButton2" min="-2" pref="53" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace min="-2" pref="112" max="-2" attributes="0"/>

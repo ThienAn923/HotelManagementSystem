@@ -36,14 +36,30 @@ public class ThemPhong extends javax.swing.JFrame {
             
             ArrayList<String> tmp = new ArrayList<String>();
             
+            String trangThai = "SELECT MaTrangThai, TenTrangThai FROM trangthai";
             String tangSQL = "SELECT IDTang FROM tang";
             String khuvucSQL = "SELECT IDKhuVuc FROM khuvuc";
-            String loaiSQL = "SELECT IDLoai FROM loaiphong";
-            String tenSQL = "SELECT tenLoai FROM loaiphong";
+            String loaiSQL = "SELECT IDLoai, tenLoai FROM loaiphong";
+            
+            
+            // Set combo box cua trang thai
+            ResultSet ttRS = st.executeQuery(trangThai);
+            tmp.add("Chọn Trạng Thái");  
+            while (ttRS.next()) {
+                String maTT = ttRS.getString(1);
+                String tenTT = ttRS.getString(2);
+                String full = maTT.concat(" - " + tenTT);
+                tmp.add(full);
+            }
+            String[] dsTT = tmp.toArray(new String[0]); // chuyen array list sang array binh thuong
+            trangthai.setModel(new DefaultComboBoxModel(dsTT)); // set model cua combo box
+            tmp.clear(); // xoa het array list
+            
+            
             
             // Set combo box cua tang
             ResultSet tangRS = st.executeQuery(tangSQL);
-            tmp.add("Chọn tầng");  
+            tmp.add("Chọn Tầng");  
             while (tangRS.next()) {
                 String tangNum = tangRS.getString(1);
                 tmp.add(tangNum);
@@ -56,7 +72,7 @@ public class ThemPhong extends javax.swing.JFrame {
             
             // Set combo box cua khu vuc
             ResultSet khuvucRS = st.executeQuery(khuvucSQL);
-            tmp.add("Chọn khu vực");
+            tmp.add("Chọn Khu Vực");
             while (khuvucRS.next()) {
                 String IDKV = khuvucRS.getString(1);
                 tmp.add(IDKV);
@@ -69,26 +85,17 @@ public class ThemPhong extends javax.swing.JFrame {
             
             // Set combo box cua loai phong
             ResultSet loaiRS = st.executeQuery(loaiSQL);
-            tmp.add("Chọn loại phòng");
+            tmp.add("Chọn Loại Phòng");
             while (loaiRS.next()) {
                 String IDLP = loaiRS.getString(1);
-                tmp.add(IDLP);
+                String tenLoai = loaiRS.getString(2);
+                String full = IDLP.concat(" - " + tenLoai);
+                tmp.add(full);
             }
             String[] dsLoai = tmp.toArray(new String[0]); // chuyen array list sang array binh thuong
+            loai.setModel(new DefaultComboBoxModel(dsLoai));
             tmp.clear(); // xoa het array list
             
-            ResultSet tenRS = st.executeQuery(tenSQL);
-            while (tenRS.next()) {
-                String ten = tenRS.getString(1);
-                tmp.add(ten);
-            }
-            String[] dsTen = tmp.toArray(new String[0]);
-            
-            for (int i=1; i<dsLoai.length; i++) {
-                dsLoai[i] = dsLoai[i].concat(" - " + dsTen[i-1]);
-                
-            }
-            loai.setModel(new DefaultComboBoxModel(dsLoai)); // set model cua combo box
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -198,14 +205,19 @@ public class ThemPhong extends javax.swing.JFrame {
 
         datlai.setBackground(new java.awt.Color(61, 192, 96));
         datlai.setForeground(new java.awt.Color(255, 255, 255));
-        datlai.setText("Đặt lại");
+        datlai.setText("Reset");
         datlai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 datlaiActionPerformed(evt);
             }
         });
 
-        trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Trống", "Không trống", "Sửa chữa", "Đang xây" }));
+        trangthai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Trạng Thái" }));
+        trangthai.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                trangthaiActionPerformed(evt);
+            }
+        });
 
         loai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Loại Phòng", "LP001 - Giường Đơn", "LP002 - Giường Đôi", "LP003 - Phòng Thường", "Phòng Superior", "Phòng Deluxe", "Phòng Suite", "Phòng Gia Đình", " ", " " }));
 
@@ -221,6 +233,11 @@ public class ThemPhong extends javax.swing.JFrame {
         tang.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Tầng" }));
 
         khuvuc.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Khu Vực" }));
+        khuvuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                khuvucActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -353,6 +370,10 @@ public class ThemPhong extends javax.swing.JFrame {
        txttenphong.setText("");
        txtgiaphong.setText("");
        txtmota.setText("");
+       tang.setSelectedIndex(0);
+       khuvuc.setSelectedIndex(0);
+       loai.setSelectedIndex(0);
+       trangthai.setSelectedIndex(0);
     }//GEN-LAST:event_datlaiActionPerformed
 
     private void themmoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_themmoiActionPerformed
@@ -372,9 +393,13 @@ public class ThemPhong extends javax.swing.JFrame {
         } else if (loai.getSelectedItem().toString().equals("Chọn Loại Phòng")) {
             JOptionPane.showMessageDialog(null, "Hãy chọn loại phòng");
             return;
+        } else if (trangthai.getSelectedItem().toString().equals("Chọn Trạng Thái")) {
+            JOptionPane.showMessageDialog(null, "Hãy chọn trạng thái");
+            return;
         } 
 
-        String loaiP = loai.getSelectedItem().toString().substring(0, 5);
+        String loaiP = loai.getSelectedItem().toString().substring(0, 5); // lay ID loai phong
+        String tt = trangthai.getSelectedItem().toString().substring(0, 5); // lay ma trang thai
 
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -387,7 +412,7 @@ public class ThemPhong extends javax.swing.JFrame {
             
             ps.setString(1, txtidphong.getText());
             ps.setString(2, txttenphong.getText());
-            ps.setString(3, trangthai.getSelectedItem().toString());
+            ps.setString(3, tt);
             ps.setString(4, txtgiaphong.getText());
             ps.setString(5, tang.getSelectedItem().toString());
             ps.setString(6, khuvuc.getSelectedItem().toString());
@@ -451,6 +476,14 @@ public class ThemPhong extends javax.swing.JFrame {
             System.out.println(e);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void khuvucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_khuvucActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_khuvucActionPerformed
+
+    private void trangthaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_trangthaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_trangthaiActionPerformed
 
     /**
      * @param args the command line arguments

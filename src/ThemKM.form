@@ -72,7 +72,7 @@
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
             <Property name="horizontalAlignment" type="int" value="0"/>
-            <Property name="text" type="java.lang.String" value="Th&#xea;m T&#x1ea7;ng"/>
+            <Property name="text" type="java.lang.String" value="Th&#xea;m Khuy&#x1ebf;n M&#xe3;i"/>
           </Properties>
         </Component>
       </SubComponents>

@@ -4,13 +4,16 @@ import java.sql.Connection;
 //import java.sql.Date;
 import java.util.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.*;
+import java.util.concurrent.TimeUnit;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -39,6 +42,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         MainTabbedPane = new javax.swing.JTabbedPane();
         Main = new javax.swing.JPanel();
         MainTabblePane = new javax.swing.JTabbedPane();
@@ -935,7 +939,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         });
 
         jLabel43.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel43.setText("Email Khách");
+        jLabel43.setText("Email");
 
         jTextField24.setText("jTextField24");
 
@@ -944,6 +948,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jTextField25.setText("jTextField25");
 
+        buttonGroup1.add(jRadioButton1);
         jRadioButton1.setText("Nam");
         jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -951,6 +956,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
+        buttonGroup1.add(jRadioButton2);
         jRadioButton2.setText("Nữ");
         jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -958,6 +964,8 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
+        jButton28.setBackground(new java.awt.Color(61, 192, 96));
+        jButton28.setForeground(new java.awt.Color(255, 255, 255));
         jButton28.setText("Clear");
         jButton28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -965,7 +973,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
-        jButton29.setText("Thêm Khách Hàng");
+        jButton29.setBackground(new java.awt.Color(61, 192, 96));
+        jButton29.setForeground(new java.awt.Color(255, 255, 255));
+        jButton29.setText("Thêm");
+        jButton29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton29ActionPerformed(evt);
+            }
+        });
 
         jLabel49.setForeground(new java.awt.Color(102, 102, 102));
         jLabel49.setText("Số Khách Dẫn Theo*");
@@ -973,6 +988,8 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel45.setForeground(new java.awt.Color(102, 102, 102));
         jLabel45.setText("Giới Tính Khách Hàng");
 
+        jButton40.setBackground(new java.awt.Color(61, 192, 96));
+        jButton40.setForeground(new java.awt.Color(255, 255, 255));
         jButton40.setText("Auto");
         jButton40.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -987,33 +1004,32 @@ public class HoltelMagReal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel29Layout.createSequentialGroup()
                 .addGap(79, 79, 79)
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField25)
-                    .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTextField25, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                    .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(jPanel29Layout.createSequentialGroup()
                             .addComponent(jButton28)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton29))
-                        .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel43)
-                            .addComponent(jLabel42)
-                            .addComponent(jLabel37)
-                            .addComponent(jLabel41)
-                            .addComponent(jTextField22, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(jTextField23)
-                            .addComponent(jTextField24)
-                            .addComponent(jLabel44)
-                            .addComponent(jLabel49)
-                            .addComponent(jLabel45)
-                            .addGroup(jPanel29Layout.createSequentialGroup()
-                                .addComponent(jRadioButton1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jRadioButton2))
-                            .addGroup(jPanel29Layout.createSequentialGroup()
-                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, 0)
-                                .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)))))
-                .addGap(78, 78, 78))
+                        .addComponent(jSpinner1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel43, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel42, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel37, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel41, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+                        .addComponent(jTextField23, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField24, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel44, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel49, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel45, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel29Layout.createSequentialGroup()
+                            .addComponent(jRadioButton1)
+                            .addGap(34, 34, 34)
+                            .addComponent(jRadioButton2))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel29Layout.createSequentialGroup()
+                            .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton40, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE))))
+                .addGap(79, 79, 79))
         );
         jPanel29Layout.setVerticalGroup(
             jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1050,12 +1066,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jRadioButton1)
                     .addComponent(jRadioButton2))
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel29Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton28)
                     .addComponent(jButton29))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        jSpinner1.setValue(1);
 
         kGradientPanel21.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kGradientPanel21.setkEndColor(new java.awt.Color(33, 115, 70));
@@ -1064,16 +1082,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jLabel19.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Thêm Khách");
 
         javax.swing.GroupLayout kGradientPanel21Layout = new javax.swing.GroupLayout(kGradientPanel21);
         kGradientPanel21.setLayout(kGradientPanel21Layout);
         kGradientPanel21Layout.setHorizontalGroup(
             kGradientPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel21Layout.createSequentialGroup()
-                .addGap(133, 133, 133)
-                .addComponent(jLabel19)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         kGradientPanel21Layout.setVerticalGroup(
             kGradientPanel21Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1087,7 +1103,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel11.setLayout(jPanel11Layout);
         jPanel11Layout.setHorizontalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel29, javax.swing.GroupLayout.PREFERRED_SIZE, 396, Short.MAX_VALUE)
+            .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(kGradientPanel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel11Layout.setVerticalGroup(
@@ -1104,7 +1120,11 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel30.setBackground(new java.awt.Color(255, 255, 255));
         jPanel30.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField26.setText("jTextField18");
+        jTextField26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField26ActionPerformed(evt);
+            }
+        });
 
         jLabel46.setForeground(new java.awt.Color(102, 102, 102));
         jLabel46.setText("Mã Phòng *");
@@ -1112,12 +1132,15 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel47.setForeground(new java.awt.Color(102, 102, 102));
         jLabel47.setText("Ngày Đặt *");
 
-        jTextField27.setText("jTextField27");
+        jTextField27.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField27ActionPerformed(evt);
+            }
+        });
 
         jLabel48.setForeground(new java.awt.Color(102, 102, 102));
         jLabel48.setText("Ngày Trả *");
 
-        jTextField28.setText("jTextField28");
         jTextField28.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField28ActionPerformed(evt);
@@ -1127,17 +1150,38 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel50.setForeground(new java.awt.Color(102, 102, 102));
         jLabel50.setText("Khách đặt *");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KH001", "Item 2", "Item 3", "Item 4" }));
 
         jLabel51.setForeground(new java.awt.Color(102, 102, 102));
         jLabel51.setText("Thành Tiền");
 
-        jTextField29.setText("jTextField29");
+        jTextField29.setEditable(false);
+        jTextField29.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField29ActionPerformed(evt);
+            }
+        });
 
+        jButton30.setBackground(new java.awt.Color(61, 192, 96));
+        jButton30.setForeground(new java.awt.Color(255, 255, 255));
         jButton30.setText("Thuê");
+        jButton30.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton30ActionPerformed(evt);
+            }
+        });
 
+        jButton37.setBackground(new java.awt.Color(61, 192, 96));
+        jButton37.setForeground(new java.awt.Color(255, 255, 255));
         jButton37.setText("Clear");
+        jButton37.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton37ActionPerformed(evt);
+            }
+        });
 
+        jButton38.setBackground(new java.awt.Color(61, 192, 96));
+        jButton38.setForeground(new java.awt.Color(255, 255, 255));
         jButton38.setText("Chọn Phòng");
         jButton38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1155,33 +1199,35 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGap(79, 79, 79)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addComponent(jLabel50)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel30Layout.createSequentialGroup()
                         .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel46)
                             .addComponent(jLabel47)
                             .addComponent(jLabel48))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
-                        .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jTextField28, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField27, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField26, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                            .addComponent(jTextField29, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel30Layout.createSequentialGroup()
-                                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel51)
-                                    .addComponent(jLabel50))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel30Layout.createSequentialGroup()
+                        .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField28)
+                            .addComponent(jTextField27)
+                            .addComponent(jTextField29)
+                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel30Layout.createSequentialGroup()
+                                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton38, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
+                            .addGroup(jPanel30Layout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
-                                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jButton39)
-                                    .addComponent(jButton38)
-                                    .addGroup(jPanel30Layout.createSequentialGroup()
-                                        .addComponent(jButton37)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton30)))))
-                        .addGap(81, 81, 81))))
+                                .addComponent(jButton39))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
+                                .addComponent(jButton37)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton30)))
+                        .addGap(79, 79, 79))))
         );
         jPanel30Layout.setVerticalGroup(
             jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1189,32 +1235,32 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(jLabel46)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addComponent(jButton38)
-                .addGap(0, 0, 0)
+                .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton38))
+                .addGap(8, 8, 8)
                 .addComponent(jLabel47)
                 .addGap(2, 2, 2)
-                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addComponent(jTextField27, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel48)
                 .addGap(2, 2, 2)
                 .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel50)
                 .addGap(2, 2, 2)
                 .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
+                .addGap(2, 2, 2)
                 .addComponent(jButton39)
-                .addGap(0, 0, 0)
+                .addGap(8, 8, 8)
                 .addComponent(jLabel51)
                 .addGap(2, 2, 2)
                 .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
                 .addGroup(jPanel30Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton30)
                     .addComponent(jButton37))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
 
         kGradientPanel22.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1224,16 +1270,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jLabel20.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setText("Thuê Phòng");
 
         javax.swing.GroupLayout kGradientPanel22Layout = new javax.swing.GroupLayout(kGradientPanel22);
         kGradientPanel22.setLayout(kGradientPanel22Layout);
         kGradientPanel22Layout.setHorizontalGroup(
             kGradientPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel22Layout.createSequentialGroup()
-                .addGap(140, 140, 140)
-                .addComponent(jLabel20)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         kGradientPanel22Layout.setVerticalGroup(
             kGradientPanel22Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1264,7 +1308,12 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel31.setBackground(new java.awt.Color(255, 255, 255));
         jPanel31.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jTextField33.setText("jTextField18");
+        jTextField33.setText("33");
+        jTextField33.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField33ActionPerformed(evt);
+            }
+        });
 
         jLabel61.setForeground(new java.awt.Color(102, 102, 102));
         jLabel61.setText("Mã Khách *");
@@ -1272,12 +1321,12 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel62.setForeground(new java.awt.Color(102, 102, 102));
         jLabel62.setText("Mã Dịch Vụ*");
 
-        jTextField34.setText("jTextField27");
+        jTextField34.setText("34");
 
         jLabel63.setForeground(new java.awt.Color(102, 102, 102));
         jLabel63.setText("Ngày Sử Dụng *");
 
-        jTextField35.setText("jTextField28");
+        jTextField35.setText("35");
         jTextField35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField35ActionPerformed(evt);
@@ -1290,8 +1339,11 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel65.setForeground(new java.awt.Color(102, 102, 102));
         jLabel65.setText("Tổng Tiền");
 
-        jTextField36.setText("jTextField29");
+        jTextField36.setEditable(false);
+        jTextField36.setText("36");
 
+        jButton35.setBackground(new java.awt.Color(61, 192, 96));
+        jButton35.setForeground(new java.awt.Color(255, 255, 255));
         jButton35.setText("Xác Nhận");
         jButton35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1299,7 +1351,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
+        jButton36.setBackground(new java.awt.Color(61, 192, 96));
+        jButton36.setForeground(new java.awt.Color(255, 255, 255));
         jButton36.setText("Clear");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
 
         jButton41.setText("Chọn Khách");
         jButton41.addActionListener(new java.awt.event.ActionListener() {
@@ -1328,7 +1387,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                             .addComponent(jSpinner2, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField35, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jTextField34, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField33, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                            .addComponent(jTextField33, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                             .addComponent(jTextField36, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel31Layout.createSequentialGroup()
                                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1336,15 +1395,15 @@ public class HoltelMagReal extends javax.swing.JFrame {
                                     .addComponent(jLabel64))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel31Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addGap(0, 129, Short.MAX_VALUE)
                                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel31Layout.createSequentialGroup()
-                                        .addComponent(jButton36)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton35))
                                     .addComponent(jButton41)
-                                    .addComponent(jButton42))))
-                        .addGap(81, 81, 81))))
+                                    .addComponent(jButton42)))
+                            .addGroup(jPanel31Layout.createSequentialGroup()
+                                .addComponent(jButton36)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton35)))
+                        .addGap(79, 79, 79))))
         );
         jPanel31Layout.setVerticalGroup(
             jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1377,8 +1436,10 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addGroup(jPanel31Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton35)
                     .addComponent(jButton36))
-                .addContainerGap(129, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
+
+        jSpinner2.setValue(1);
 
         kGradientPanel23.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         kGradientPanel23.setkEndColor(new java.awt.Color(33, 115, 70));
@@ -1387,16 +1448,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jLabel21.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Sử Dụng Dịch Vụ");
 
         javax.swing.GroupLayout kGradientPanel23Layout = new javax.swing.GroupLayout(kGradientPanel23);
         kGradientPanel23.setLayout(kGradientPanel23Layout);
         kGradientPanel23Layout.setHorizontalGroup(
             kGradientPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(kGradientPanel23Layout.createSequentialGroup()
-                .addGap(143, 143, 143)
-                .addComponent(jLabel21)
-                .addContainerGap(99, Short.MAX_VALUE))
+            .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         kGradientPanel23Layout.setVerticalGroup(
             kGradientPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1426,7 +1485,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -1451,11 +1510,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
         ThongTinPhongTK_Info1.setBackground(new java.awt.Color(255, 255, 255));
         ThongTinPhongTK_Info1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        jLabel66.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel66.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel66.setText("Mã Khách:");
+        jLabel66.setText("ID Thuê Phòng*");
 
-        jTextField37.setText("jTextField7");
         jTextField37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField37ActionPerformed(evt);
@@ -1463,62 +1520,37 @@ public class HoltelMagReal extends javax.swing.JFrame {
         });
 
         jLabel67.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel67.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel67.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel67.setText("Họ Tên Khách:");
-
-        jTextField38.setText("jTextField8");
+        jLabel67.setText("ID Khách Hàng");
 
         jLabel68.setBackground(new java.awt.Color(102, 102, 102));
-        jLabel68.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel68.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel68.setText("Số Điện Thoại Khách Hàng");
+        jLabel68.setText("Họ Tên Khách Hàng");
 
-        jTextField39.setText("jTextField9");
-
-        jLabel69.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel69.setForeground(new java.awt.Color(102, 102, 102));
-        jLabel69.setText("Căn Cước Công Dân:");
+        jLabel69.setText("Số Điện Thoại");
 
-        jTextField40.setText("jTextField10");
         jTextField40.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField40ActionPerformed(evt);
             }
         });
 
-        jLabel70.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel70.setForeground(new java.awt.Color(102, 102, 102));
         jLabel70.setText("Email Khách Hàng");
 
-        jTextField41.setText("jTextField41");
-
-        jLabel71.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel71.setText("Mã Phòng");
 
-        jTextField42.setText("jTextField42");
-
-        jLabel72.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel72.setText("Số Người:");
 
-        jTextField43.setText("jTextField43");
-
-        jLabel73.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel73.setText("Ngày Đặt");
 
-        jTextField44.setText("jTextField44");
-
-        jLabel75.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel75.setText("Số Ngày Thuê:");
 
-        jTextField45.setText("jTextField45");
-
-        jLabel76.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel76.setText("Dịch Vụ Sử Dụng:");
 
         jTextField46.setText("jTextField46");
 
-        jLabel77.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel77.setText("Tổng Tiền ( Đã Kèm Thuế VAT 10%):");
 
         jTextField47.setText("jTextField47");
@@ -1656,15 +1688,13 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jPanel15.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel79.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel79.setText("Mã Thanh Toán:");
 
-        jLabel78.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel78.setText("Phương Thức Thanh Toán:");
 
         jTextField48.setText("jTextField48");
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Phương Thức Thanh Toán", "Thẻ Visa", "Thẻ ATM" }));
 
         jButton43.setText("Auto");
         jButton43.addActionListener(new java.awt.event.ActionListener() {
@@ -1673,42 +1703,34 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
-        jLabel87.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel87.setText("Số Thẻ:");
 
         jTextField49.setText("jTextField49");
 
-        jLabel88.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel88.setText("Ngày Hết hạn");
 
-        jLabel89.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel89.setText("Tên");
 
         jTextField50.setText("jTextField50");
 
         jTextField51.setText("jTextField51");
 
-        jLabel90.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel90.setText("Họ");
 
-        jLabel93.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel93.setText("Địa Chỉ Thanh Toán");
 
         jTextField52.setText("jTextField52");
 
-        jLabel94.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel94.setText("Địa Chỉ Thanh Toán (Dòng 2)");
 
         jTextField53.setText("jTextField53");
 
-        jLabel108.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel108.setText("Quốc Gia");
 
         jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jTextField54.setText("jTextField54");
 
-        jLabel109.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel109.setText("Thành Phố");
 
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03" }));
@@ -1721,12 +1743,10 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
-        jLabel110.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel110.setText("Mã Bưu Điện");
 
         jTextField55.setText("jTextField55");
 
-        jLabel111.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel111.setText("Số Điện Thoại:");
 
         jTextField56.setText("jTextField56");
@@ -1742,7 +1762,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
 
         jTextField57.setText("abcd");
 
-        jLabel92.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         jLabel92.setText("Mã Bảo Vệ");
 
         jLabel95.setText("???");
@@ -1778,7 +1797,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                                         .addComponent(jTextField51))))
                             .addComponent(jLabel93)
                             .addComponent(jLabel94))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel78)
@@ -2215,10 +2234,10 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(ThongTinPhong_TK1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(ThongTinPhong_TK1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 565, Short.MAX_VALUE)
+            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         MainTabblePane.addTab("Thanh Toán", jPanel2);
@@ -4136,12 +4155,13 @@ public class HoltelMagReal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(MainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 1200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(MainTabbedPane, javax.swing.GroupLayout.PREFERRED_SIZE, 635, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -4190,7 +4210,13 @@ public class HoltelMagReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        // TODO add your handling code here:
+        // Clear khach hang
+        jTextField18.setText("");
+        jTextField22.setText("");
+        jTextField23.setText("");
+        jTextField24.setText("");
+        jTextField25.setText("");
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jTextField28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField28ActionPerformed
@@ -4201,8 +4227,64 @@ public class HoltelMagReal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField35ActionPerformed
 
+    public int TongTienDV(String IDDV, int soLuong) {
+        int tong = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            
+            String select = "SELECT giaDV FROM dichvu WHERE IDdichVu = ";
+            String ID = "'" + IDDV + "'"; // lay ID 
+            String sql = select.concat(ID);
+            System.out.println(sql);
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            rs.next();
+            int gia = Integer.parseInt(rs.getString(1));
+            tong = (int) gia*soLuong;
+            System.out.println(tong);
+             
+            return gia*soLuong;
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return tong;
+    }
+    
+    
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        // TODO add your handling code here:
+        // Xac nhan su dung dich vu
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            String test = "INSERT INTO sudungdichvu(IDKH, IDdichVu, ngaySuDung, soLuong)" + "VALUES(?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(test);
+
+            int soLuong = Integer.parseInt(jSpinner2.getValue().toString());
+            String IDDV = jTextField34.getText();
+            int tong = TongTienDV(IDDV, soLuong);
+            
+            ps.setString(1, jTextField33.getText());
+            ps.setString(2, jTextField34.getText());
+            ps.setString(3, jTextField35.getText());
+            ps.setString(4, jSpinner2.getValue().toString());
+            ps.execute();
+            
+            jTextField36.setText(Integer.toString(tong));
+            
+            st.close();
+            con.close();
+            JOptionPane.showMessageDialog(null, "Xác nhận thành công!");
+        } catch (Exception e) {
+            //System.out.println(e);   
+//            if (e.getMessage().contains("Duplicate entry")) {
+//                JOptionPane.showMessageDialog(null, "Mã khuyến mãi đã tồn tại");
+//            } 
+        }
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
@@ -4210,7 +4292,49 @@ public class HoltelMagReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
-        // TODO add your handling code here:
+        // Auto khach hang
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String query = "SELECT IDKH FROM khachhang ORDER BY IDKH";
+            ResultSet rs = st.executeQuery(query);
+            
+            rs.last();
+            String lastID = rs.getString(1);
+            // tim ID cuoi cung trong csdl
+            
+            String newIDnum, KH = "KH00", KH2 = "KH0", KH3 = "KH", newID="";
+            
+            int last = Integer.parseInt(lastID.substring(2, 5));
+            last++;
+            newIDnum = Integer.toString(last);
+            System.out.println(newIDnum);
+            
+            switch (newIDnum.length()) {
+                case 1:
+                    newID = KH.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 2:
+                    newID = KH2.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 3:
+                    newID = KH3.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+            }
+            
+            jTextField18.setText(newID);
+                  
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }//GEN-LAST:event_jButton40ActionPerformed
 
     private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
@@ -4218,7 +4342,59 @@ public class HoltelMagReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton41ActionPerformed
 
     private void jTextField37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField37ActionPerformed
-        // TODO add your handling code here:
+        // Enter ID thue phong va tu fill cai text field con lai
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String IDDV = "'" + jTextField37.getText() + "'"; // lay ID 
+            String query = "SELECT * FROM thuePhong JOIN khachhang ON khachhang.IDKH = thuephong.IDKH WHERE IDthue = ";
+            String full = query.concat(IDDV); // Ket noi ID vao sql
+            System.out.println(full);
+            ResultSet rs = st.executeQuery(full);
+            
+            rs.next();
+            // ko lay column 1 vi no la ID thue phong
+            String IDKH = rs.getString(2);
+            String IDPhong = rs.getString(3);
+            String ngayThue = rs.getString(4);
+            String ngayTra = rs.getString(5);
+            // ko lay column 6 vi no la IDKH trung voi column 2
+            String tenKH = rs.getString(7);
+            // ko lay column 6 vi no la CMND
+            String emailKH = rs.getString(9);
+            String sdt = rs.getString(10);
+            // ko lay column 6 vi no la gioi tinh KH
+            String soLuongKhach = rs.getString(12);
+            
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+            Date Thue = sd.parse(ngayThue); // chuyen tu String sang Date
+            Date Tra = sd.parse(ngayTra);
+            
+            long dayDiff = TimeUnit.MILLISECONDS.toDays(Tra.getTime() - Thue.getTime()); // tinh so ngay thue phong
+            System.out.println(dayDiff);
+            
+            jTextField38.setText(IDKH);
+            jTextField39.setText(tenKH);
+            jTextField40.setText(sdt);
+            jTextField41.setText(emailKH);
+            jTextField42.setText(IDPhong);
+            jTextField43.setText(soLuongKhach);
+            jTextField44.setText(ngayThue);
+            jTextField45.setText(Long.toString(dayDiff));
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            if ("Illegal operation on empty result set.".equals(e.getMessage())) {
+                // Kiem tra su ton tai cua nhan vien
+                JOptionPane.showMessageDialog(null, "Dịch vụ không tồn tại!");
+            }
+            System.out.println(e.getMessage());
+        }
+        
     }//GEN-LAST:event_jTextField37ActionPerformed
 
     private void jTextField40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField40ActionPerformed
@@ -4253,7 +4429,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
             Statement st = (Statement) con.createStatement();
             DefaultTableModel model = (DefaultTableModel) jTable9.getModel(); // get the table
             model.setRowCount(0); // clean the whole table
-            DateFormat sd = new SimpleDateFormat("yyyy-mm-dd");
+            DateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
 
             String ID = "'" + jTextField6.getText() + "'"; // lay ID cua DV
             String query = "SELECT * FROM khuyenmai WHERE maKM = ";
@@ -4271,6 +4447,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
             String ngayKT = sd.format(KT);
             String TL = rs.getString(5);
             String mota = rs.getString(6);
+            
+            System.out.println(ngayBD);
+            System.out.println(KT);
 
             String[] row = {maKM, tenKM, ngayBD, ngayKT, TL};
             model.addRow(row);
@@ -4375,7 +4554,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) jTable3.getModel(); // get the table
 
             String IDNV, tenNV, emailNV, luongNV, gioiTinhNV, ngaySinhNV, tenCV;
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-mm-dd");
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             
             model.setRowCount(0); // clean the whole table
             //This part is to get the whole data table
@@ -4386,8 +4565,14 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 luongNV = rs.getString(4);
                 Date birthday = rs.getDate(5);
                 ngaySinhNV = dateFormat.format(birthday); // chuyen Date thanh String
-                gioiTinhNV = rs.getString(6);
+                gioiTinhNV = rs.getString(6);            
                 tenCV = rs.getString(7);
+                
+                if (gioiTinhNV.equals("1")) {
+                    gioiTinhNV = "Nam";
+                } else if (gioiTinhNV.equals("0")) {
+                    gioiTinhNV = "Nữ";
+                }
 
                 String[] row = {IDNV, tenNV, emailNV, luongNV, ngaySinhNV, gioiTinhNV, tenCV};
                 model.addRow(row);
@@ -4761,6 +4946,221 @@ public class HoltelMagReal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton18ActionPerformed
 
+    public String checkGT() {
+        String gtinh = "";
+        if (jRadioButton1.isSelected())
+            gtinh = "1";
+        else if (jRadioButton2.isSelected())
+            gtinh = "0";
+        return gtinh;
+    }
+    
+    private void jButton29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton29ActionPerformed
+        // Them khach hang
+        if (!jTextField18.getText().substring(0, 2).equals(("KH"))) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập đúng mã khách hàng");
+            return;
+        } else if (jTextField22.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập tên khách hàng");
+            return;
+        } else if (jTextField23.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập đúng CMND");
+            return;
+        }else if (!jTextField24.getText().contains("@gmail.com")) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập đúng email");
+            return;
+        } else if (jTextField25.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập đúng số điện thoại");
+            return;
+        } else if (checkGT().equals("")) {
+            JOptionPane.showMessageDialog(null, "Hãy chọn giới tính");
+            return;
+        }
+        
+        String gt = checkGT();
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            String test = "INSERT INTO khachhang(IDKH, tenKH, CMND, emailKH, SDT, gioiTinhKH, soLuongKhach)" + "VALUES(?,?,?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(test);
+
+            ps.setString(1, jTextField18.getText());
+            ps.setString(2, jTextField22.getText());
+            ps.setString(3, jTextField23.getText());
+            ps.setString(4, jTextField24.getText());
+            ps.setString(5, jTextField25.getText());
+            ps.setString(6, gt);
+            ps.setString(7, jSpinner1.getValue().toString());
+
+            ps.execute();
+            
+            st.close();
+            con.close();
+            JOptionPane.showMessageDialog(null, "Thêm khách hàng thành công!");
+        } catch (Exception e) {
+            System.out.println(e);   
+            if (e.getMessage().contains("Duplicate entry")) {
+                JOptionPane.showMessageDialog(null, "ID khách hàng đã tồn tại");
+            } 
+        }
+    }//GEN-LAST:event_jButton29ActionPerformed
+
+    private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField33ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        // Clear su dung dich vu
+        jTextField33.setText("");
+        jTextField34.setText("");
+        jTextField35.setText("");
+        jTextField36.setText("");
+        jSpinner2.setValue(1);
+    }//GEN-LAST:event_jButton36ActionPerformed
+
+    public boolean isDate(JTextField txt) {
+        String format = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        
+        try {
+            Date date = sdf.parse(txt.getText());
+            return date != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public int[] dsKM() {
+        int[] t = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            
+            ArrayList<Integer> tmp = new ArrayList<>(); // List dung de chua cac ty le 
+            
+            String sql = "SELECT tyLe FROM khuyenmai WHERE ngayKT >= CURRENT_DATE AND ngayBD <= CURRENT_DATE";
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next()) {
+                int TL = rs.getInt(1);
+                tmp.add(TL);
+            }
+            int[] dsTL = tmp.stream().mapToInt(Integer::intValue).toArray();;
+            
+            return dsTL;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return t;
+    }
+    
+    public int giaPhong(String IDPhong) {
+        int gia = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String ID = "'" + IDPhong + "'"; // lay ID cua DV
+            String query = "SELECT giaPhong FROM phong WHERE IDPhong = ";
+            String SQL = query.concat(ID); // Ket noi ID vao sql
+            System.out.println(SQL);
+            
+            ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            gia = rs.getInt(1);
+            
+            return gia;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return gia;
+    }
+    
+    public double[] dsTL_decimal() {
+        int[] listTL = dsKM();
+        double[] dsTL = new double[listTL.length];
+        
+        for (int i=0; i<listTL.length; i++) {
+            double tmp = listTL[i] / 100.0;
+            dsTL[i] = (float) 1 - tmp;
+            System.out.print(dsTL[i]);
+        }
+        
+        return dsTL;
+    }
+    
+    private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
+        // Thue Phong - ch xong
+        if (jTextField26.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập ID phòng!");
+            return;
+        } else if (!isDate(jTextField27) || !isDate(jTextField28)) {
+            JOptionPane.showMessageDialog(null, "Hãy nhập đúng ngày!");
+        }
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            
+            String test = "INSERT INTO thuephong(IDKH, IDPhong, ngayThue,ngayTra)" + "VALUES(?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(test);
+            
+            ps.setString(1, jComboBox2.getSelectedItem().toString()); // id khach hang
+            ps.setString(2, jTextField26.getText()); // id phong
+            ps.setString(3, jTextField27.getText()); // ngay thue
+            ps.setString(4, jTextField28.getText()); // ngay tra
+            ps.execute();
+            
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+            Date ngayThue = sd.parse(jTextField27.getText()); // chuyen tu String sang Date
+            Date ngayTra = sd.parse(jTextField28.getText());
+            
+            long dayDiff = TimeUnit.MILLISECONDS.toDays(ngayTra.getTime() - ngayThue.getTime()); // tinh so ngay thue phong
+            System.out.println(dayDiff);
+            
+            int gia = giaPhong(jTextField26.getText()); // tim gia phong
+            float tong = gia * dayDiff;
+            double[] dsTL = dsTL_decimal(); // tra ve danh sach cai ty le km o dang 1 - 0.xx
+            
+            for (int i=0; i<dsTL.length; i++) {
+                tong *=  dsTL[i];
+            }
+            
+            System.out.println("Tong: " + tong);
+            jTextField29.setText(Float.toString(tong));
+            
+            st.close();
+            con.close();
+            JOptionPane.showMessageDialog(null, "Xác nhận thành công!");
+        } catch (Exception e) {
+            System.out.println(e);   
+            if (e.getMessage().contains("Duplicate entry")) {
+                JOptionPane.showMessageDialog(null, "Phòng đang được thuê, hãy nhập lại thông tin!");
+            } 
+        }
+    }//GEN-LAST:event_jButton30ActionPerformed
+
+    private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField26ActionPerformed
+
+    private void jTextField29ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField29ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField29ActionPerformed
+
+    private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField27ActionPerformed
+
+    private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
+        // Clear thue phong
+        
+    }//GEN-LAST:event_jButton37ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4808,6 +5208,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private javax.swing.JPanel ThongTinPhong_TK;
     private javax.swing.JPanel ThongTinPhong_TK1;
     private javax.swing.JPanel TrangChu;
+    private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
