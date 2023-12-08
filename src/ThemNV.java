@@ -185,10 +185,15 @@ public class ThemNV extends javax.swing.JFrame {
         jLabel11.setText("Mật Khẩu");
 
         jTextField6.setEditable(false);
-        jTextField6.setText("jTextField6");
+        jTextField6.setPreferredSize(new java.awt.Dimension(77, 30));
 
         jTextField8.setEditable(false);
-        jTextField8.setText("jTextField8");
+        jTextField8.setPreferredSize(new java.awt.Dimension(77, 30));
+        jTextField8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField8ActionPerformed(evt);
+            }
+        });
 
         jCheckBox1.setText("Quản Trị");
         jCheckBox1.addActionListener(new java.awt.event.ActionListener() {
@@ -421,6 +426,17 @@ public class ThemNV extends javax.swing.JFrame {
             String test = "INSERT INTO nhanvien(IDNV, tenNV, emailNV, luongNV, ngaySinhNV, gioiTinhNV, maCV, moTaNV)" + "VALUES(?,?,?,?,?,?,?,?)";
             PreparedStatement ps = con.prepareStatement(test);
 
+            String username = removeDiacriticsOfNames().concat(jTextField1.getText());
+            jTextField6.setText(username); // auto fill username
+            String password = generateRandomPassword(8);
+            jTextField8.setText(password); // auto fill password
+            System.out.println(username + " " + password);
+            
+            if (!themTK(username, password)) {
+                JOptionPane.showMessageDialog(null, "Không tạo được tài khoản");
+                return;
+            }
+            
             ps.setString(1, jTextField1.getText());
             ps.setString(2, jTextField2.getText());
             ps.setString(3, jTextField3.getText());
@@ -431,11 +447,6 @@ public class ThemNV extends javax.swing.JFrame {
             ps.setString(8, jTextArea1.getText());
             ps.execute();
             
-            String username = removeDiacriticsOfNames().concat(jTextField1.getText());
-            jTextField6.setText(username);
-            String password = generateRandomPassword(8);
-            jTextField8.setText(password);
-            System.out.println(username + " " + password);
             
             st.close();
             con.close();
@@ -455,6 +466,34 @@ public class ThemNV extends javax.swing.JFrame {
             
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    public boolean themTK(String username, String password) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            String test = "INSERT INTO taikhoan(IDTK, Username, Password, IDNV, TaiKhoanQuanTri)" + "VALUES(?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(test);
+
+            ps.setString(1, autoTK());
+            ps.setString(2, username);
+            ps.setString(3, password);
+            ps.setString(4, jTextField1.getText());
+            ps.setBoolean(5, jCheckBox1.isSelected());
+            ps.execute();
+            
+            st.close();
+            con.close();
+            
+            return true;
+        } catch (Exception e) {
+            System.out.println(e);   
+            if (e.getMessage().contains("Duplicate entry")) {
+                JOptionPane.showMessageDialog(null, "Tài khoản đã tồn tại");
+            } 
+            return false;
+        }
+    }
+    
     public String generateRandomPassword(int length) {
         SecureRandom random = new SecureRandom();
         StringBuilder password = new StringBuilder();
@@ -524,6 +563,52 @@ public class ThemNV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    public String autoTK() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String query = "SELECT IDTK FROM taikhoan ORDER BY IDTK";
+            ResultSet rs = st.executeQuery(query);
+            
+            rs.last();
+            String lastID = rs.getString(1);
+            // tim ID cuoi cung trong csdl
+            
+            String newIDnum, ID = "TK00", ID2 = "TK0", ID3 = "TK", newID="";
+            
+            int last = Integer.parseInt(lastID.substring(2, 5));
+            last++;
+            newIDnum = Integer.toString(last);
+            System.out.println(newIDnum);
+
+            switch (newIDnum.length()) {
+                case 1:
+                    newID = ID.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 2:
+                    newID = ID2.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 3:
+                    newID = ID3.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+            }
+            
+                  
+            st.close();
+            con.close();
+            
+            return newID;
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
+    }
+    
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton2ActionPerformed
@@ -531,6 +616,10 @@ public class ThemNV extends javax.swing.JFrame {
     private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCheckBox1ActionPerformed
+
+    private void jTextField8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField8ActionPerformed
 
     /**
      * @param args the command line arguments

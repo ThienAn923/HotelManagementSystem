@@ -218,7 +218,7 @@ public class ThemKhuVuc extends javax.swing.JFrame {
             
             String newIDnum, ID = "KV00", ID2 = "KV0", ID3 = "KV", newID="";
             
-            int last = Integer.parseInt(lastID.substring(2, 4));
+            int last = Integer.parseInt(lastID.substring(2, 5));
             last++;
             newIDnum = Integer.toString(last);
             System.out.println(newIDnum);

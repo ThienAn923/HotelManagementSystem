@@ -56,6 +56,9 @@
           <Dimension value="[1200, 635]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="MainTabbedPaneStateChanged"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -272,9 +275,6 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="jLabel26">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -282,9 +282,6 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField7">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField7"/>
-                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField7ActionPerformed"/>
                               </Events>
@@ -294,9 +291,6 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -304,17 +298,11 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField8">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField8"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel28">
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
-                                </Property>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -323,15 +311,9 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField9">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField9"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel29">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -339,26 +321,17 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField10">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField10"/>
-                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField10ActionPerformed"/>
                               </Events>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField11">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField11"/>
-                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField11ActionPerformed"/>
                               </Events>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel30">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -367,9 +340,6 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel31">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -377,15 +347,9 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField12">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField12"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel32">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -393,22 +357,16 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField13">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField13"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel33">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Khu V&#x1ef1;c"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField14">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField14"/>
-                              </Properties>
                             </Component>
                           </SubComponents>
                         </Container>
@@ -577,9 +535,6 @@
                           <SubComponents>
                             <Component class="javax.swing.JLabel" name="jLabel34">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -599,9 +554,6 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                                 </Property>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -617,9 +569,6 @@
                               <Properties>
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
-                                </Property>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
                                 </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
@@ -642,9 +591,6 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel38">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -653,9 +599,6 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel39">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -669,9 +612,6 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel40">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="10" style="0"/>
-                                </Property>
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
@@ -780,15 +720,70 @@
                           <Layout>
                             <DimensionLayout dim="0">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="1034" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane14" alignment="0" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                             <DimensionLayout dim="1">
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <EmptySpace min="0" pref="216" max="32767" attributes="0"/>
+                                  <Component id="jScrollPane14" alignment="0" pref="216" max="32767" attributes="0"/>
                               </Group>
                             </DimensionLayout>
                           </Layout>
+                          <SubComponents>
+                            <Container class="javax.swing.JScrollPane" name="jScrollPane14">
+                              <Properties>
+                                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                  <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                                </Property>
+                              </Properties>
+                              <AuxValues>
+                                <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                              </AuxValues>
+
+                              <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                              <SubComponents>
+                                <Component class="javax.swing.JTable" name="jTable11">
+                                  <Properties>
+                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                                      <Color blue="0" green="0" red="0" type="rgb"/>
+                                    </Property>
+                                    <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                      <Table columnCount="3" rowCount="4">
+                                        <Column editable="false" title="ID D&#x1ecb;ch V&#x1ee5;" type="java.lang.Object"/>
+                                        <Column editable="false" title="T&#xea;n D&#x1ecb;ch V&#x1ee5;" type="java.lang.Object"/>
+                                        <Column editable="false" title="Gi&#xe1;" type="java.lang.Object"/>
+                                      </Table>
+                                    </Property>
+                                    <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                      <TableColumnModel selectionModel="0">
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                          <Title/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                      </TableColumnModel>
+                                    </Property>
+                                    <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                      <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                    </Property>
+                                  </Properties>
+                                </Component>
+                              </SubComponents>
+                            </Container>
+                          </SubComponents>
                         </Container>
                         <Container class="keeptoo.KGradientPanel" name="kGradientPanel20">
                           <Properties>
@@ -973,7 +968,7 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="f5" green="f5" red="f5" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="M&#xe3; Ph&#xf2;ng:"/>
+                                <Property name="text" type="java.lang.String" value="M&#xe3; Thu&#xea; Ph&#xf2;ng:"/>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField1ActionPerformed"/>
@@ -981,7 +976,7 @@
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel1">
                               <Properties>
-                                <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m Ph&#xf2;ng:"/>
+                                <Property name="text" type="java.lang.String" value="T&#xec;m Ki&#x1ebf;m Thu&#xea; Ph&#xf2;ng:"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton19">
@@ -997,7 +992,7 @@
                                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="f5" green="f5" red="f5" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="Ng&#xe0;y &#x110;&#x1eb7;t:"/>
+                                <Property name="text" type="java.lang.String" value="Ko x&#xe0;i"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -1224,9 +1219,6 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField25">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="jTextField25"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JRadioButton" name="jRadioButton1">
                               <Properties>
@@ -1798,9 +1790,6 @@
                           </Layout>
                           <SubComponents>
                             <Component class="javax.swing.JTextField" name="jTextField33">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="33"/>
-                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField33ActionPerformed"/>
                               </Events>
@@ -1810,7 +1799,7 @@
                                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                                   <Color blue="66" green="66" red="66" type="rgb"/>
                                 </Property>
-                                <Property name="text" type="java.lang.String" value="M&#xe3; Kh&#xe1;ch *"/>
+                                <Property name="text" type="java.lang.String" value="ID Thu&#xea; Ph&#xf2;ng"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel62">
@@ -1822,9 +1811,6 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField34">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="34"/>
-                              </Properties>
                             </Component>
                             <Component class="javax.swing.JLabel" name="jLabel63">
                               <Properties>
@@ -1835,9 +1821,6 @@
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JTextField" name="jTextField35">
-                              <Properties>
-                                <Property name="text" type="java.lang.String" value="35"/>
-                              </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField35ActionPerformed"/>
                               </Events>
@@ -1861,7 +1844,6 @@
                             <Component class="javax.swing.JTextField" name="jTextField36">
                               <Properties>
                                 <Property name="editable" type="boolean" value="false"/>
-                                <Property name="text" type="java.lang.String" value="36"/>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton35">
@@ -2519,10 +2501,10 @@
                                               <Component id="jComboBox4" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jTextField54" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="jButton44" alignment="3" min="-2" max="-2" attributes="0"/>
                                               <Component id="jButton45" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jButton44" alignment="3" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                           <EmptySpace max="32767" attributes="0"/>
                                       </Group>
@@ -2541,9 +2523,6 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField48">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField48"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JComboBox" name="jComboBox3">
                                   <Properties>
@@ -2551,7 +2530,7 @@
                                       <StringArray count="3">
                                         <StringItem index="0" value="Ch&#x1ecd;n Ph&#x1b0;&#x1a1;ng Th&#x1ee9;c Thanh To&#xe1;n"/>
                                         <StringItem index="1" value="Th&#x1ebb; Visa"/>
-                                        <StringItem index="2" value="Th&#x1ebb; ATM"/>
+                                        <StringItem index="2" value="Ti&#x1ec1;n M&#x1eb7;t"/>
                                       </StringArray>
                                     </Property>
                                   </Properties>
@@ -2569,13 +2548,10 @@
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel87">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="S&#x1ed1; Th&#x1ebb;:"/>
+                                    <Property name="text" type="java.lang.String" value="S&#x1ed1; Th&#x1ebb;"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField49">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField49"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel88">
                                   <Properties>
@@ -2588,14 +2564,8 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField50">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField50"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField51">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField51"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel90">
                                   <Properties>
@@ -2608,9 +2578,6 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField52">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField52"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel94">
                                   <Properties>
@@ -2618,9 +2585,6 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField53">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField53"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel108">
                                   <Properties>
@@ -2630,11 +2594,204 @@
                                 <Component class="javax.swing.JComboBox" name="jComboBox4">
                                   <Properties>
                                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                                      <StringArray count="4">
-                                        <StringItem index="0" value="Item 1"/>
-                                        <StringItem index="1" value="Item 2"/>
-                                        <StringItem index="2" value="Item 3"/>
-                                        <StringItem index="3" value="Item 4"/>
+                                      <StringArray count="197">
+                                        <StringItem index="0" value="--"/>
+                                        <StringItem index="1" value="Afghanistan"/>
+                                        <StringItem index="2" value="Albania"/>
+                                        <StringItem index="3" value="Algeria"/>
+                                        <StringItem index="4" value="Andorra"/>
+                                        <StringItem index="5" value="Angola"/>
+                                        <StringItem index="6" value="Antigua &amp; Deps"/>
+                                        <StringItem index="7" value="Argentina"/>
+                                        <StringItem index="8" value="Armenia"/>
+                                        <StringItem index="9" value="Australia"/>
+                                        <StringItem index="10" value="Austria"/>
+                                        <StringItem index="11" value="Azerbaijan"/>
+                                        <StringItem index="12" value="Bahamas"/>
+                                        <StringItem index="13" value="Bahrain"/>
+                                        <StringItem index="14" value="Bangladesh"/>
+                                        <StringItem index="15" value="Barbados"/>
+                                        <StringItem index="16" value="Belarus"/>
+                                        <StringItem index="17" value="Belgium"/>
+                                        <StringItem index="18" value="Belize"/>
+                                        <StringItem index="19" value="Benin"/>
+                                        <StringItem index="20" value="Bhutan"/>
+                                        <StringItem index="21" value="Bolivia"/>
+                                        <StringItem index="22" value="Bosnia Herzegovina"/>
+                                        <StringItem index="23" value="Botswana"/>
+                                        <StringItem index="24" value="Brazil"/>
+                                        <StringItem index="25" value="Brunei"/>
+                                        <StringItem index="26" value="Bulgaria"/>
+                                        <StringItem index="27" value="Burkina"/>
+                                        <StringItem index="28" value="Burundi"/>
+                                        <StringItem index="29" value="Cambodia"/>
+                                        <StringItem index="30" value="Cameroon"/>
+                                        <StringItem index="31" value="Canada"/>
+                                        <StringItem index="32" value="Cape Verde"/>
+                                        <StringItem index="33" value="Central African Rep"/>
+                                        <StringItem index="34" value="Chad"/>
+                                        <StringItem index="35" value="Chile"/>
+                                        <StringItem index="36" value="China"/>
+                                        <StringItem index="37" value="Colombia"/>
+                                        <StringItem index="38" value="Comoros"/>
+                                        <StringItem index="39" value="Congo"/>
+                                        <StringItem index="40" value="Congo {Democratic Rep}"/>
+                                        <StringItem index="41" value="Costa Rica"/>
+                                        <StringItem index="42" value="Croatia"/>
+                                        <StringItem index="43" value="Cuba"/>
+                                        <StringItem index="44" value="Cyprus"/>
+                                        <StringItem index="45" value="Czech Republic"/>
+                                        <StringItem index="46" value="Denmark"/>
+                                        <StringItem index="47" value="Djibouti"/>
+                                        <StringItem index="48" value="Dominica"/>
+                                        <StringItem index="49" value="Dominican Republic"/>
+                                        <StringItem index="50" value="East Timor"/>
+                                        <StringItem index="51" value="Ecuador"/>
+                                        <StringItem index="52" value="Egypt"/>
+                                        <StringItem index="53" value="El Salvador"/>
+                                        <StringItem index="54" value="Equatorial Guinea"/>
+                                        <StringItem index="55" value="Eritrea"/>
+                                        <StringItem index="56" value="Estonia"/>
+                                        <StringItem index="57" value="Ethiopia"/>
+                                        <StringItem index="58" value="Fiji"/>
+                                        <StringItem index="59" value="Finland"/>
+                                        <StringItem index="60" value="France"/>
+                                        <StringItem index="61" value="Gabon"/>
+                                        <StringItem index="62" value="Gambia"/>
+                                        <StringItem index="63" value="Georgia"/>
+                                        <StringItem index="64" value="Germany"/>
+                                        <StringItem index="65" value="Ghana"/>
+                                        <StringItem index="66" value="Greece"/>
+                                        <StringItem index="67" value="Grenada"/>
+                                        <StringItem index="68" value="Guatemala"/>
+                                        <StringItem index="69" value="Guinea"/>
+                                        <StringItem index="70" value="Guinea-Bissau"/>
+                                        <StringItem index="71" value="Guyana"/>
+                                        <StringItem index="72" value="Haiti"/>
+                                        <StringItem index="73" value="Honduras"/>
+                                        <StringItem index="74" value="Hungary"/>
+                                        <StringItem index="75" value="Iceland"/>
+                                        <StringItem index="76" value="India"/>
+                                        <StringItem index="77" value="Indonesia"/>
+                                        <StringItem index="78" value="Iran"/>
+                                        <StringItem index="79" value="Iraq"/>
+                                        <StringItem index="80" value="Ireland {Republic}"/>
+                                        <StringItem index="81" value="Israel"/>
+                                        <StringItem index="82" value="Italy"/>
+                                        <StringItem index="83" value="Ivory Coast"/>
+                                        <StringItem index="84" value="Jamaica"/>
+                                        <StringItem index="85" value="Japan"/>
+                                        <StringItem index="86" value="Jordan"/>
+                                        <StringItem index="87" value="Kazakhstan"/>
+                                        <StringItem index="88" value="Kenya"/>
+                                        <StringItem index="89" value="Kiribati"/>
+                                        <StringItem index="90" value="Korea North"/>
+                                        <StringItem index="91" value="Korea South"/>
+                                        <StringItem index="92" value="Kosovo"/>
+                                        <StringItem index="93" value="Kuwait"/>
+                                        <StringItem index="94" value="Kyrgyzstan"/>
+                                        <StringItem index="95" value="Laos"/>
+                                        <StringItem index="96" value="Latvia"/>
+                                        <StringItem index="97" value="Lebanon"/>
+                                        <StringItem index="98" value="Lesotho"/>
+                                        <StringItem index="99" value="Liberia"/>
+                                        <StringItem index="100" value="Libya"/>
+                                        <StringItem index="101" value="Liechtenstein"/>
+                                        <StringItem index="102" value="Lithuania"/>
+                                        <StringItem index="103" value="Luxembourg"/>
+                                        <StringItem index="104" value="Macedonia"/>
+                                        <StringItem index="105" value="Madagascar"/>
+                                        <StringItem index="106" value="Malawi"/>
+                                        <StringItem index="107" value="Malaysia"/>
+                                        <StringItem index="108" value="Maldives"/>
+                                        <StringItem index="109" value="Mali"/>
+                                        <StringItem index="110" value="Malta"/>
+                                        <StringItem index="111" value="Marshall Islands"/>
+                                        <StringItem index="112" value="Mauritania"/>
+                                        <StringItem index="113" value="Mauritius"/>
+                                        <StringItem index="114" value="Mexico"/>
+                                        <StringItem index="115" value="Micronesia"/>
+                                        <StringItem index="116" value="Moldova"/>
+                                        <StringItem index="117" value="Monaco"/>
+                                        <StringItem index="118" value="Mongolia"/>
+                                        <StringItem index="119" value="Montenegro"/>
+                                        <StringItem index="120" value="Morocco"/>
+                                        <StringItem index="121" value="Mozambique"/>
+                                        <StringItem index="122" value="Myanmar, {Burma}"/>
+                                        <StringItem index="123" value="Namibia"/>
+                                        <StringItem index="124" value="Nauru"/>
+                                        <StringItem index="125" value="Nepal"/>
+                                        <StringItem index="126" value="Netherlands"/>
+                                        <StringItem index="127" value="New Zealand"/>
+                                        <StringItem index="128" value="Nicaragua"/>
+                                        <StringItem index="129" value="Niger"/>
+                                        <StringItem index="130" value="Nigeria"/>
+                                        <StringItem index="131" value="Norway"/>
+                                        <StringItem index="132" value="Oman"/>
+                                        <StringItem index="133" value="Pakistan"/>
+                                        <StringItem index="134" value="Palau"/>
+                                        <StringItem index="135" value="Panama"/>
+                                        <StringItem index="136" value="Papua New Guinea"/>
+                                        <StringItem index="137" value="Paraguay"/>
+                                        <StringItem index="138" value="Peru"/>
+                                        <StringItem index="139" value="Philippines"/>
+                                        <StringItem index="140" value="Poland"/>
+                                        <StringItem index="141" value="Portugal"/>
+                                        <StringItem index="142" value="Qatar"/>
+                                        <StringItem index="143" value="Romania"/>
+                                        <StringItem index="144" value="Russian Federation"/>
+                                        <StringItem index="145" value="Rwanda"/>
+                                        <StringItem index="146" value="St Kitts &amp; Nevis"/>
+                                        <StringItem index="147" value="St Lucia"/>
+                                        <StringItem index="148" value="Saint Vincent &amp; the Grenadines"/>
+                                        <StringItem index="149" value="Samoa"/>
+                                        <StringItem index="150" value="San Marino"/>
+                                        <StringItem index="151" value="Sao Tome &amp; Principe"/>
+                                        <StringItem index="152" value="Saudi Arabia"/>
+                                        <StringItem index="153" value="Senegal"/>
+                                        <StringItem index="154" value="Serbia"/>
+                                        <StringItem index="155" value="Seychelles"/>
+                                        <StringItem index="156" value="Sierra Leone"/>
+                                        <StringItem index="157" value="Singapore"/>
+                                        <StringItem index="158" value="Slovakia"/>
+                                        <StringItem index="159" value="Slovenia"/>
+                                        <StringItem index="160" value="Solomon Islands"/>
+                                        <StringItem index="161" value="Somalia"/>
+                                        <StringItem index="162" value="South Africa"/>
+                                        <StringItem index="163" value="South Sudan"/>
+                                        <StringItem index="164" value="Spain"/>
+                                        <StringItem index="165" value="Sri Lanka"/>
+                                        <StringItem index="166" value="Sudan"/>
+                                        <StringItem index="167" value="Suriname"/>
+                                        <StringItem index="168" value="Swaziland"/>
+                                        <StringItem index="169" value="Sweden"/>
+                                        <StringItem index="170" value="Switzerland"/>
+                                        <StringItem index="171" value="Syria"/>
+                                        <StringItem index="172" value="Taiwan"/>
+                                        <StringItem index="173" value="Tajikistan"/>
+                                        <StringItem index="174" value="Tanzania"/>
+                                        <StringItem index="175" value="Thailand"/>
+                                        <StringItem index="176" value="Togo"/>
+                                        <StringItem index="177" value="Tonga"/>
+                                        <StringItem index="178" value="Trinidad &amp; Tobago"/>
+                                        <StringItem index="179" value="Tunisia"/>
+                                        <StringItem index="180" value="Turkey"/>
+                                        <StringItem index="181" value="Turkmenistan"/>
+                                        <StringItem index="182" value="Tuvalu"/>
+                                        <StringItem index="183" value="Uganda"/>
+                                        <StringItem index="184" value="Ukraine"/>
+                                        <StringItem index="185" value="United Arab Emirates"/>
+                                        <StringItem index="186" value="United Kingdom"/>
+                                        <StringItem index="187" value="United States"/>
+                                        <StringItem index="188" value="Uruguay"/>
+                                        <StringItem index="189" value="Uzbekistan"/>
+                                        <StringItem index="190" value="Vanuatu"/>
+                                        <StringItem index="191" value="Vatican City"/>
+                                        <StringItem index="192" value="Venezuela"/>
+                                        <StringItem index="193" value="Vietnam"/>
+                                        <StringItem index="194" value="Yemen"/>
+                                        <StringItem index="195" value="Zambia"/>
+                                        <StringItem index="196" value="Zimbabwe"/>
                                       </StringArray>
                                     </Property>
                                   </Properties>
@@ -2643,9 +2800,6 @@
                                   </AuxValues>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField54">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField54"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel109">
                                   <Properties>
@@ -2701,19 +2855,13 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField55">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField55"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel111">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i:"/>
+                                    <Property name="text" type="java.lang.String" value="S&#x1ed1; &#x110;i&#x1ec7;n Tho&#x1ea1;i"/>
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField56">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="jTextField56"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JButton" name="jButton44">
                                   <Properties>
@@ -2729,13 +2877,10 @@
                                   </Properties>
                                 </Component>
                                 <Component class="javax.swing.JTextField" name="jTextField57">
-                                  <Properties>
-                                    <Property name="text" type="java.lang.String" value="abcd"/>
-                                  </Properties>
                                 </Component>
                                 <Component class="javax.swing.JLabel" name="jLabel92">
                                   <Properties>
-                                    <Property name="text" type="java.lang.String" value="M&#xe3; B&#x1ea3;o V&#x1ec7;"/>
+                                    <Property name="text" type="java.lang.String" value="CVV"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
@@ -3633,22 +3778,22 @@
                                           <Renderer/>
                                         </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
+                                          <Title value="L&#x1b0;&#x1a1;ng"/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title value="Ng&#xe0;y Sinh"/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title value="Gi&#x1edb;i T&#xed;nh"/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
+                                          <Title value="Ch&#x1ee9;c V&#x1ee5;"/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
@@ -5842,28 +5987,28 @@
                                     </Property>
                                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                       <TableColumnModel selectionModel="0">
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title value="ID Khuy&#x1ebf;n M&#xe3;i"/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title value="T&#xea;n Khuy&#x1ebf;n M&#xe3;i"/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title value="Ng&#xe0;y B&#x1eaf;t &#x110;&#x1ea7;u"/>
+                                          <Editor/>
+                                          <Renderer/>
+                                        </Column>
+                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                          <Title value="Ng&#xe0;y K&#x1ebf;t Th&#xfa;c"/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
+                                          <Title value="T&#x1ef7; L&#x1ec7; Gi&#x1ea3;m"/>
                                           <Editor/>
                                           <Renderer/>
                                         </Column>
@@ -6404,14 +6549,168 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <EmptySpace min="0" pref="1200" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Component id="jPanel84" alignment="0" pref="1200" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <EmptySpace min="0" pref="600" max="32767" attributes="0"/>
+                  <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                      <Component id="jPanel84" alignment="0" pref="600" max="32767" attributes="0"/>
+                  </Group>
               </Group>
             </DimensionLayout>
           </Layout>
+          <SubComponents>
+            <Container class="javax.swing.JPanel" name="jPanel84">
+              <Properties>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[1050, 283]"/>
+                </Property>
+              </Properties>
+
+              <Layout>
+                <DimensionLayout dim="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="jPanel85" alignment="0" max="32767" attributes="0"/>
+                      <Component id="kGradientPanel31" alignment="0" pref="1196" max="32767" attributes="0"/>
+                  </Group>
+                </DimensionLayout>
+                <DimensionLayout dim="1">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="kGradientPanel31" min="-2" pref="46" max="-2" attributes="0"/>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Component id="jPanel85" max="32767" attributes="0"/>
+                      </Group>
+                  </Group>
+                </DimensionLayout>
+              </Layout>
+              <SubComponents>
+                <Container class="javax.swing.JPanel" name="jPanel85">
+                  <Properties>
+                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane13" alignment="0" pref="1192" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jScrollPane13" alignment="0" pref="546" max="32767" attributes="0"/>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JScrollPane" name="jScrollPane13">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                      </AuxValues>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                      <SubComponents>
+                        <Component class="javax.swing.JTable" name="jTable10">
+                          <Properties>
+                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                              <Color blue="0" green="0" red="0" type="rgb"/>
+                            </Property>
+                            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                              <Table columnCount="0" rowCount="4"/>
+                            </Property>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0"/>
+                            </Property>
+                            <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                              <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                            </Property>
+                          </Properties>
+                        </Component>
+                      </SubComponents>
+                    </Container>
+                  </SubComponents>
+                </Container>
+                <Container class="keeptoo.KGradientPanel" name="kGradientPanel31">
+                  <Properties>
+                    <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                      <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                        <EtchetBorder/>
+                      </Border>
+                    </Property>
+                    <Property name="kEndColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="46" green="73" red="21" type="rgb"/>
+                    </Property>
+                    <Property name="kGradientFocus" type="int" value="0"/>
+                    <Property name="kStartColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                      <Color blue="42" green="68" red="23" type="rgb"/>
+                    </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[40, 40]"/>
+                    </Property>
+                  </Properties>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel52" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
+                              <Component id="jLabel52" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace pref="14" max="32767" attributes="0"/>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel52">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Tahoma" size="12" style="1"/>
+                        </Property>
+                        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                        <Property name="horizontalAlignment" type="int" value="0"/>
+                        <Property name="text" type="java.lang.String" value="Danh S&#xe1;ch H&#xf3;a &#x110;&#x1a1;n"/>
+                      </Properties>
+                    </Component>
+                  </SubComponents>
+                </Container>
+              </SubComponents>
+            </Container>
+          </SubComponents>
         </Container>
         <Container class="javax.swing.JPanel" name="jPanel19">
           <Constraints>
@@ -6438,8 +6737,8 @@
         <Container class="javax.swing.JPanel" name="jPanel20">
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-              <JTabbedPaneConstraints tabName="Ng&#xf4;n Ng&#x1eef;/Language">
-                <Property name="tabTitle" type="java.lang.String" value="Ng&#xf4;n Ng&#x1eef;/Language"/>
+              <JTabbedPaneConstraints tabName="Chuy&#x1ec3;n &#x110;&#x1ed5;i Ng&#xf4;n Ng&#x1eef;">
+                <Property name="tabTitle" type="java.lang.String" value="Chuy&#x1ec3;n &#x110;&#x1ed5;i Ng&#xf4;n Ng&#x1eef;"/>
               </JTabbedPaneConstraints>
             </Constraint>
           </Constraints>
