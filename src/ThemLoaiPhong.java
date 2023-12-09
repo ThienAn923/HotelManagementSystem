@@ -244,7 +244,7 @@ public class ThemLoaiPhong extends javax.swing.JFrame {
                     break;
             }
             
-                  
+            jTextField1.setText(newID);
             st.close();
             con.close();
             

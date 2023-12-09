@@ -344,21 +344,6 @@ public class ThemNV extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        jTextField1.setText("");
-        jTextField2.setText("");
-        jTextField3.setText("");
-        jTextField4.setText("");
-        jTextField5.setText("");
-        buttonGroup1.clearSelection();
-        jTextField7.setText("");
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton1ActionPerformed
-
     public String checkGT() {
         String gtinh = "";
         if (jRadioButton1.isSelected())
@@ -411,6 +396,88 @@ public class ThemNV extends javax.swing.JFrame {
         return check;
     }
     
+    public String generateRandomPassword(int length) {
+        SecureRandom random = new SecureRandom();
+        StringBuilder password = new StringBuilder();
+
+        for (int i = 0; i < length; i++) {
+            int index = random.nextInt(CHARACTERS.length());
+            password.append(CHARACTERS.charAt(index));
+        }
+
+        return password.toString();
+    }
+    
+    public String removeDiacriticsOfNames() { // bo dau trong cac tu tieng viet
+        String[] words = jTextField2.getText().split("\\s+");
+        String name = words[words.length - 1];
+        
+        String normalized = Normalizer.normalize(name, Normalizer.Form.NFD);
+        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
+        return pattern.matcher(normalized).replaceAll("");
+    }
+    
+    public String autoTK() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String query = "SELECT IDTK FROM taikhoan ORDER BY IDTK";
+            ResultSet rs = st.executeQuery(query);
+            
+            rs.last();
+            String lastID = rs.getString(1);
+            // tim ID cuoi cung trong csdl
+            
+            String newIDnum, ID = "TK00", ID2 = "TK0", ID3 = "TK", newID="";
+            
+            int last = Integer.parseInt(lastID.substring(2, 5));
+            last++;
+            newIDnum = Integer.toString(last);
+            System.out.println(newIDnum);
+
+            switch (newIDnum.length()) {
+                case 1:
+                    newID = ID.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 2:
+                    newID = ID2.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 3:
+                    newID = ID3.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+            }
+            
+                  
+            st.close();
+            con.close();
+            
+            return newID;
+        } catch (Exception e) {
+            System.out.println(e);
+            return "";
+        }
+    }
+    
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jTextField4.setText("");
+        jTextField5.setText("");
+        buttonGroup1.clearSelection();
+        jTextField7.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+      
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // Thêm nhân viên
         String gtinh = checkGT();
@@ -494,26 +561,6 @@ public class ThemNV extends javax.swing.JFrame {
         }
     }
     
-    public String generateRandomPassword(int length) {
-        SecureRandom random = new SecureRandom();
-        StringBuilder password = new StringBuilder();
-
-        for (int i = 0; i < length; i++) {
-            int index = random.nextInt(CHARACTERS.length());
-            password.append(CHARACTERS.charAt(index));
-        }
-
-        return password.toString();
-    }
-    
-    public String removeDiacriticsOfNames() { // bo dau trong cac tu tieng viet
-        String[] words = jTextField2.getText().split("\\s+");
-        String name = words[words.length - 1];
-        
-        String normalized = Normalizer.normalize(name, Normalizer.Form.NFD);
-        Pattern pattern = Pattern.compile("\\p{InCombiningDiacriticalMarks}+");
-        return pattern.matcher(normalized).replaceAll("");
-    }
     
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
         // TODO add your handling code here:
@@ -563,51 +610,7 @@ public class ThemNV extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    public String autoTK() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            
-            String query = "SELECT IDTK FROM taikhoan ORDER BY IDTK";
-            ResultSet rs = st.executeQuery(query);
-            
-            rs.last();
-            String lastID = rs.getString(1);
-            // tim ID cuoi cung trong csdl
-            
-            String newIDnum, ID = "TK00", ID2 = "TK0", ID3 = "TK", newID="";
-            
-            int last = Integer.parseInt(lastID.substring(2, 5));
-            last++;
-            newIDnum = Integer.toString(last);
-            System.out.println(newIDnum);
-
-            switch (newIDnum.length()) {
-                case 1:
-                    newID = ID.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-                case 2:
-                    newID = ID2.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-                case 3:
-                    newID = ID3.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-            }
-            
-                  
-            st.close();
-            con.close();
-            
-            return newID;
-        } catch (Exception e) {
-            System.out.println(e);
-            return "";
-        }
-    }
+    
     
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:

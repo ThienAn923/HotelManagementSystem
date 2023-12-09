@@ -36,8 +36,388 @@ public class HoltelMagReal extends javax.swing.JFrame {
      */
     public HoltelMagReal() {
         initComponents();
+        dsHD();
+    }
+    
+    public void dsHD() {
+        // danh sach hoa don
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String query = "SELECT * FROM hoadon";
+            ResultSet rs = st.executeQuery(query);
+            DefaultTableModel model = (DefaultTableModel) jTable10.getModel(); // get the table
+
+            
+            model.setRowCount(0); // clean the whole table
+            //This part is to get the whole data table
+            while(rs.next()){
+                String IDHD = rs.getString(1);
+                String ngayLap = rs.getString(2);
+                String IDthue = rs.getString(3);
+                String IDNV = rs.getString(4);
+                String IDPhong = rs.getString(5);
+                double tongTien = rs.getDouble(6);
+
+                String[] row = {IDHD, ngayLap, IDthue, IDNV, IDPhong, Double.toString(tongTien)};
+                model.addRow(row);
+            }
+
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    
+    public int TongTienDV(String IDDV, int soLuong) {
+        int tong = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            
+            String select = "SELECT giaDV FROM dichvu WHERE IDdichVu = ";
+            String ID = "'" + IDDV + "'"; // lay ID 
+            String sql = select.concat(ID);
+            System.out.println(sql);
+            
+            ResultSet rs = st.executeQuery(sql);
+            
+            rs.next();
+            int gia = Integer.parseInt(rs.getString(1));
+            tong = (int) gia*soLuong;
+            System.out.println(tong);
+             
+            return gia*soLuong;
+            
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return tong;
+    }
+    
+    public String DVsudung() {
+        ArrayList<String> tmp = new ArrayList<String>();
+        
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String ID = "'" + jTextField38.getText() + "'"; // lay ID 
+            String query = "SELECT tenDichVu, giaDV FROM sudungdichvu JOIN thuephong ON thuephong.IDthue = sudungdichvu.IDthue " +
+                           "JOIN dichvu ON dichvu.IDdichVu = sudungdichvu.IDdichVu " +
+                           "WHERE ngaySuDung >= ngayThue AND ngaySuDung <= ngayTra AND thuephong.IDKH = ";
+            String full = query.concat(ID); // Ket noi ID vao sql
+            System.out.println(full);
+            ResultSet rs = st.executeQuery(full);
+            
+            while (rs.next()) {
+                tmp.add(rs.getString(1));
+                tongTienDV += rs.getInt(2);
+            }
+            String first = tmp.get(0);
+            String fullDV = new String();
+            
+            for (int i=0; i<tmp.size(); i++) {
+                if (tmp.get(i).equals(first)) {
+                    fullDV = fullDV.concat(first);
+                } else fullDV = fullDV.concat(", " + tmp.get(i));
+            }
+            System.out.println("Cac dich vu: " + fullDV);
+            
+            st.close();
+            con.close();
+            
+            return fullDV;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "";
     }
 
+    
+    public String autoHD() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String query = "SELECT IDHoaDon FROM hoadon ORDER BY IDHoaDon";
+            ResultSet rs = st.executeQuery(query);
+            
+            rs.last();
+            String lastID = rs.getString(1);
+            // tim ID cuoi cung trong csdl
+            
+            String newIDnum, HD = "HD00", HD2 = "HD0", HD3 = "HD", newID="";
+            
+            int last = Integer.parseInt(lastID.substring(2, 5));
+            last++;
+            newIDnum = Integer.toString(last);
+            System.out.println(newIDnum);
+            
+            switch (newIDnum.length()) {
+                case 1:
+                    newID = HD.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 2:
+                    newID = HD2.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 3:
+                    newID = HD3.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+            }
+                  
+            st.close();
+            con.close();
+            
+            return newID;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return "";
+    }
+    
+    public void themTT(String IDHoaDon) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            String test = "INSERT INTO thanhtoan(IDGiaoDich, ngayGD, IDHoaDon)" + "VALUES(?,?,?)";
+            PreparedStatement ps = con.prepareStatement(test);
+            
+            Date currentDate = new Date();
+            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+
+            ps.setString(1, autoHD());
+            ps.setString(2, sd.format(currentDate));
+            ps.setString(3, IDHoaDon); 
+            ps.execute();
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            System.out.println(e);   
+            
+        }
+    }
+    
+    public void themVisa(String IDGiaoDich) {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            String test = "INSERT INTO thevisa(IDGiaoDich, SoThe, SoCVV, HoTen, MaBuuDien)" + "VALUES(?,?,?,?,?)";
+            PreparedStatement ps = con.prepareStatement(test);
+
+            ps.setString(1, IDGiaoDich);
+            ps.setString(2, jTextField49.getText());
+            ps.setString(3, jTextField57.getText());
+            ps.setString(4, jTextField50.getText().concat(" " + jTextField51.getText()));
+            ps.setString(5, jTextField55.getText());
+            ps.execute();
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            System.out.println(e);   
+            
+        }
+    }
+    
+    public boolean isDate(JTextField txt) {
+        String format = "yyyy-MM-dd";
+        SimpleDateFormat sdf = new SimpleDateFormat(format);
+        
+        try {
+            Date date = sdf.parse(txt.getText());
+            return date != null;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+    
+    public int[] dsKM() {
+        int[] t = null;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            
+            ArrayList<Integer> tmp = new ArrayList<>(); // List dung de chua cac ty le 
+            
+            String sql = "SELECT tyLe FROM khuyenmai WHERE ngayKT >= CURRENT_DATE AND ngayBD <= CURRENT_DATE";
+            ResultSet rs = st.executeQuery(sql);
+            
+            while (rs.next()) {
+                int TL = rs.getInt(1);
+                tmp.add(TL);
+            }
+            int[] dsTL = tmp.stream().mapToInt(Integer::intValue).toArray();;
+            
+            return dsTL;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return t;
+    }
+    
+    public int giaPhong(String IDPhong) {
+        int gia = 0;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String ID = "'" + IDPhong + "'"; // lay ID cua DV
+            String query = "SELECT giaPhong FROM phong WHERE IDPhong = ";
+            String SQL = query.concat(ID); // Ket noi ID vao sql
+            System.out.println(SQL);
+            
+            ResultSet rs = st.executeQuery(SQL);
+            rs.next();
+            gia = rs.getInt(1);
+            
+            return gia;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return gia;
+    }
+    
+    public double[] dsTL_decimal() {
+        int[] listTL = dsKM();
+        double[] dsTL = new double[listTL.length];
+        
+        for (int i=0; i<listTL.length; i++) {
+            double tmp = listTL[i] / 100.0;
+            dsTL[i] = (float) 1 - tmp;
+            System.out.print(dsTL[i]);
+        }
+        
+        return dsTL;
+    }
+    
+    public String autoThuePhong() {
+        String id = "";
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            
+            String query = "SELECT IDthue FROM thuephong ORDER BY IDthue";
+            ResultSet rs = st.executeQuery(query);
+            
+            rs.last();
+            String lastID = rs.getString(1);
+            // tim ID cuoi cung trong csdl
+            
+            String newIDnum, TP = "TP00", TP2 = "NV0", TP3 = "TP", newID="";
+            
+            int last = Integer.parseInt(lastID.substring(2, 5));
+            last++;
+            newIDnum = Integer.toString(last);
+            System.out.println(newIDnum);
+
+            switch (newIDnum.length()) {
+                case 1:
+                    newID = TP.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 2:
+                    newID = TP2.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+                case 3:
+                    newID = TP3.concat(newIDnum);
+                    System.out.println(newID);
+                    break;
+            }
+             
+            st.close();
+            con.close();
+            
+            return newID;
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return id;
+    }
+    
+    public void thongTinPhong() {
+        // thong tin phong trong trang chu
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String IDthue = "'" + jTextField1.getText() + "';";
+            String query = "SELECT * FROM thuephong JOIN Phong p ON p.IDPhong = thuephong.IDPhong WHERE IDthue = ";
+            String full = query.concat(IDthue);
+            System.out.println(full);
+            
+            ResultSet rs = st.executeQuery(full);
+            
+            rs.next();
+            jTextField7.setText(rs.getString(3)); // ma phong
+            jTextField8.setText(rs.getString(8)); // trang thai phong
+            jTextField9.setText(rs.getString(4)); // ngay dat
+            jTextField10.setText(rs.getString(5)); // ngay tra
+            jTextField11.setText(rs.getString(12)); // loai phong
+            jTextField12.setText(rs.getString(9)); // gia phong
+            jTextField13.setText(rs.getString(10)); // tang
+            jTextField14.setText(rs.getString(11)); // khu vuc
+            
+            
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    public void thongTinKH() {
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+
+            String IDthue = "'" + jTextField1.getText() + "'";
+            String query = "SELECT * FROM thuephong JOIN khachhang ON khachhang.IDKH = thuephong.IDKH WHERE IDthue = ";
+            String full = query.concat(IDthue);
+            System.out.println(full);
+            
+            ResultSet rs = st.executeQuery(full);
+            
+            rs.next();
+            
+            if (rs.getString(11).equals("1")) {
+                jTextField21.setText("Nam");
+            } else jTextField21.setText("Nữ");
+            jTextField15.setText(rs.getString(2)); // ma khach
+            jTextField16.setText(rs.getString(7)); // ten khach
+            jTextField17.setText(rs.getString(9)); // email
+            jTextField19.setText(rs.getString(10)); // so dien thoai
+            jTextField20.setText(rs.getString(8)); // CMND
+            
+            st.close();
+            con.close();
+        } catch (Exception e) {
+            
+            System.out.println(e.getMessage());
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -134,13 +514,12 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel48 = new javax.swing.JLabel();
         jTextField28 = new javax.swing.JTextField();
         jLabel50 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jLabel51 = new javax.swing.JLabel();
         jTextField29 = new javax.swing.JTextField();
         jButton30 = new javax.swing.JButton();
         jButton37 = new javax.swing.JButton();
         jButton38 = new javax.swing.JButton();
-        jButton39 = new javax.swing.JButton();
+        khachdat = new javax.swing.JTextField();
         kGradientPanel22 = new keeptoo.KGradientPanel();
         jLabel20 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
@@ -586,7 +965,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel34.setForeground(new java.awt.Color(102, 102, 102));
         jLabel34.setText("Mã Khách:");
 
-        jTextField15.setText("jTextField7");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField15ActionPerformed(evt);
@@ -597,15 +975,10 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel35.setForeground(new java.awt.Color(102, 102, 102));
         jLabel35.setText("Tên Khách");
 
-        jTextField16.setText("jTextField8");
-
         jLabel36.setBackground(new java.awt.Color(102, 102, 102));
         jLabel36.setForeground(new java.awt.Color(102, 102, 102));
         jLabel36.setText("Email Khách:");
 
-        jTextField17.setText("jTextField9");
-
-        jTextField19.setText("jTextField11");
         jTextField19.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField19ActionPerformed(evt);
@@ -618,12 +991,8 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel39.setForeground(new java.awt.Color(102, 102, 102));
         jLabel39.setText("Căn Cước Công Dân");
 
-        jTextField20.setText("jTextField12");
-
         jLabel40.setForeground(new java.awt.Color(102, 102, 102));
         jLabel40.setText("Giới Tinh");
-
-        jTextField21.setText("jTextField13");
 
         javax.swing.GroupLayout ThongTInKhach_InfoLayout = new javax.swing.GroupLayout(ThongTInKhach_Info);
         ThongTInKhach_Info.setLayout(ThongTInKhach_InfoLayout);
@@ -1157,8 +1526,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel50.setForeground(new java.awt.Color(102, 102, 102));
         jLabel50.setText("Khách đặt *");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "KH001", "Item 2", "Item 3", "Item 4" }));
-
         jLabel51.setForeground(new java.awt.Color(102, 102, 102));
         jLabel51.setText("Thành Tiền");
 
@@ -1196,8 +1563,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
             }
         });
 
-        jButton39.setText("Chọn Khách");
-
         javax.swing.GroupLayout jPanel30Layout = new javax.swing.GroupLayout(jPanel30);
         jPanel30.setLayout(jPanel30Layout);
         jPanel30Layout.setHorizontalGroup(
@@ -1219,21 +1584,18 @@ public class HoltelMagReal extends javax.swing.JFrame {
                             .addComponent(jTextField28)
                             .addComponent(jTextField27)
                             .addComponent(jTextField29)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel30Layout.createSequentialGroup()
                                 .addComponent(jTextField26, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton38, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE))
-                            .addGroup(jPanel30Layout.createSequentialGroup()
-                                .addComponent(jLabel51)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton39))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel30Layout.createSequentialGroup()
                                 .addComponent(jButton37)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton30)))
+                                .addComponent(jButton30))
+                            .addGroup(jPanel30Layout.createSequentialGroup()
+                                .addComponent(jLabel51)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(khachdat))
                         .addGap(79, 79, 79))))
         );
         jPanel30Layout.setVerticalGroup(
@@ -1255,11 +1617,9 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
                 .addComponent(jLabel50)
-                .addGap(2, 2, 2)
-                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(jButton39)
-                .addGap(8, 8, 8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(khachdat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addComponent(jLabel51)
                 .addGap(2, 2, 2)
                 .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1917,7 +2277,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
             .addGroup(kGradientPanel34Layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel91)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(51, Short.MAX_VALUE))
         );
         kGradientPanel34Layout.setVerticalGroup(
             kGradientPanel34Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1951,7 +2311,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                     .addGroup(jPanel32Layout.createSequentialGroup()
                         .addGap(150, 150, 150)
                         .addComponent(jLabel125)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(149, Short.MAX_VALUE))
         );
         jPanel32Layout.setVerticalGroup(
             jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2063,7 +2423,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         kGradientPanel28Layout.setHorizontalGroup(
             kGradientPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel28Layout.createSequentialGroup()
-                .addContainerGap(69, Short.MAX_VALUE)
+                .addContainerGap(64, Short.MAX_VALUE)
                 .addComponent(jLabel80)
                 .addGap(63, 63, 63))
         );
@@ -2663,7 +3023,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jLabel23.setText("Tìm Kiếm Phòng:");
 
         jComboBox1.setBackground(new java.awt.Color(245, 245, 245));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "LP001 Giường đon", "LP002 Giường đôi", "LP003 Phòng thường", "LP004 Phòng Superior", "LP005 Phòng Deluxe", "LP006 Phòng Suite", "LP007 Phòng gia đình" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -3980,13 +4340,13 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jTable10.setForeground(new java.awt.Color(0, 0, 0));
         jTable10.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {},
-                {},
-                {},
-                {}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-
+                "ID Hóa Đơn", "Ngày Lập", "ID Thuê Phòng", "ID Nhân Viên", "ID Phòng", "Tổng Tiền"
             }
         ));
         jScrollPane13.setViewportView(jTable10);
@@ -4060,7 +4420,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                 .addComponent(jPanel84, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE))
         );
 
-        MainTabbedPane.addTab("Báo Cáo", jPanel18);
+        MainTabbedPane.addTab("Hóa Đơn", jPanel18);
 
         javax.swing.GroupLayout jPanel19Layout = new javax.swing.GroupLayout(jPanel19);
         jPanel19.setLayout(jPanel19Layout);
@@ -4199,7 +4559,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
                         .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel17Layout.createSequentialGroup()
-                .addContainerGap(487, Short.MAX_VALUE)
+                .addContainerGap(490, Short.MAX_VALUE)
                 .addGroup(kGradientPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, kGradientPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel54)
@@ -4262,71 +4622,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
-    public void thongTinPhong() {
-        // thong tin phong trong trang chu
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-
-            String IDthue = "'" + jTextField1.getText() + "';";
-            String query = "SELECT * FROM thuephong JOIN Phong p ON p.IDPhong = thuephong.IDPhong WHERE IDthue = ";
-            String full = query.concat(IDthue);
-            System.out.println(full);
-            
-            ResultSet rs = st.executeQuery(full);
-            
-            rs.next();
-            jTextField15.setText(rs.getString(3)); // ma phong
-            jTextField8.setText(rs.getString(8)); // trang thai phong
-            jTextField9.setText(rs.getString(4)); // ngay dat
-            jTextField10.setText(rs.getString(5)); // ngay tra
-            jTextField11.setText(rs.getString(12)); // loai phong
-            jTextField12.setText(rs.getString(9)); // gia phong
-            jTextField13.setText(rs.getString(10)); // tang
-            jTextField14.setText(rs.getString(11)); // khu vuc
-            
-            
-            st.close();
-            con.close();
-        } catch (Exception e) {
-            
-            System.out.println(e.getMessage());
-        }
-    }
-    
-    public void thongTinKH() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-
-            String IDthue = "'" + jTextField1.getText() + "'";
-            String query = "SELECT * FROM thuephong JOIN khachhang ON khachhang.IDKH = thuephong.IDKH WHERE IDthue = ";
-            String full = query.concat(IDthue);
-            System.out.println(full);
-            
-            ResultSet rs = st.executeQuery(full);
-            
-            rs.next();
-            
-            if (rs.getString(11).equals("1")) {
-                jTextField21.setText("Nam");
-            } else jTextField21.setText("Nữ");
-            jTextField15.setText(rs.getString(2)); // ma khach
-            jTextField16.setText(rs.getString(7)); // ten khach
-            jTextField17.setText(rs.getString(9)); // email
-            jTextField19.setText(rs.getString(10)); // so dien thoai
-            jTextField20.setText(rs.getString(8)); // CMND
-            
-            st.close();
-            con.close();
-        } catch (Exception e) {
-            
-            System.out.println(e.getMessage());
-        }
-    }
-    
     private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
         // Tim kiem thong tin thue phong
         thongTinPhong();
@@ -4419,35 +4714,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private void jTextField35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField35ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField35ActionPerformed
-
-    public int TongTienDV(String IDDV, int soLuong) {
-        int tong = 0;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-            
-            String select = "SELECT giaDV FROM dichvu WHERE IDdichVu = ";
-            String ID = "'" + IDDV + "'"; // lay ID 
-            String sql = select.concat(ID);
-            System.out.println(sql);
-            
-            ResultSet rs = st.executeQuery(sql);
-            
-            rs.next();
-            int gia = Integer.parseInt(rs.getString(1));
-            tong = (int) gia*soLuong;
-            System.out.println(tong);
-             
-            return gia*soLuong;
-            
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return tong;
-    }
-    
-    
+  
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
         // Xac nhan su dung dich vu
         try {
@@ -4602,47 +4869,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jTextField37ActionPerformed
-
-    public String DVsudung() {
-        ArrayList<String> tmp = new ArrayList<String>();
-        
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-
-            String ID = "'" + jTextField38.getText() + "'"; // lay ID 
-            String query = "SELECT tenDichVu, giaDV FROM sudungdichvu JOIN thuephong ON thuephong.IDthue = sudungdichvu.IDthue " +
-                           "JOIN dichvu ON dichvu.IDdichVu = sudungdichvu.IDdichVu " +
-                           "WHERE ngaySuDung >= ngayThue AND ngaySuDung <= ngayTra AND thuephong.IDKH = ";
-            String full = query.concat(ID); // Ket noi ID vao sql
-            System.out.println(full);
-            ResultSet rs = st.executeQuery(full);
-            
-            while (rs.next()) {
-                tmp.add(rs.getString(1));
-                tongTienDV += rs.getInt(2);
-            }
-            String first = tmp.get(0);
-            String fullDV = new String();
-            
-            for (int i=0; i<tmp.size(); i++) {
-                if (tmp.get(i).equals(first)) {
-                    fullDV = fullDV.concat(first);
-                } else fullDV = fullDV.concat(", " + tmp.get(i));
-            }
-            System.out.println("Cac dich vu: " + fullDV);
-            
-            st.close();
-            con.close();
-            
-            return fullDV;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return "";
-    }
-    
+  
     private void jTextField40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField40ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField40ActionPerformed
@@ -4697,50 +4924,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox6ActionPerformed
 
-    public String autoHD() {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            
-            String query = "SELECT IDHoaDon FROM hoadon ORDER BY IDHoaDon";
-            ResultSet rs = st.executeQuery(query);
-            
-            rs.last();
-            String lastID = rs.getString(1);
-            // tim ID cuoi cung trong csdl
-            
-            String newIDnum, HD = "HD00", HD2 = "HD0", HD3 = "HD", newID="";
-            
-            int last = Integer.parseInt(lastID.substring(2, 5));
-            last++;
-            newIDnum = Integer.toString(last);
-            System.out.println(newIDnum);
-            
-            switch (newIDnum.length()) {
-                case 1:
-                    newID = HD.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-                case 2:
-                    newID = HD2.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-                case 3:
-                    newID = HD3.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-            }
-                  
-            st.close();
-            con.close();
-            
-            return newID;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return "";
-    }
     
     private void jButton44ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton44ActionPerformed
         // Thanh toan
@@ -4776,54 +4959,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton44ActionPerformed
 
-    public void themTT(String IDHoaDon) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-            String test = "INSERT INTO thanhtoan(IDGiaoDich, ngayGD, IDHoaDon)" + "VALUES(?,?,?)";
-            PreparedStatement ps = con.prepareStatement(test);
-            
-            Date currentDate = new Date();
-            SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
-
-            ps.setString(1, autoHD());
-            ps.setString(2, sd.format(currentDate));
-            ps.setString(3, IDHoaDon); 
-            ps.execute();
-            
-            st.close();
-            con.close();
-            
-        } catch (Exception e) {
-            System.out.println(e);   
-            
-        }
-    }
     
-    public void themVisa(String IDGiaoDich) {
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-            String test = "INSERT INTO thevisa(IDGiaoDich, SoThe, SoCVV, HoTen, MaBuuDien)" + "VALUES(?,?,?,?,?)";
-            PreparedStatement ps = con.prepareStatement(test);
-
-            ps.setString(1, IDGiaoDich);
-            ps.setString(2, jTextField49.getText());
-            ps.setString(3, jTextField57.getText());
-            ps.setString(4, jTextField50.getText().concat(" " + jTextField51.getText()));
-            ps.setString(5, jTextField55.getText());
-            ps.execute();
-            
-            st.close();
-            con.close();
-            
-        } catch (Exception e) {
-            System.out.println(e);   
-            
-        }
-    }
     
     private void jButton46ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton46ActionPerformed
         // TODO add your handling code here:
@@ -4896,7 +5032,44 @@ public class HoltelMagReal extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
+        // Tim kiem theo loai phong
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
+            Statement st = (Statement) con.createStatement();
+            DefaultTableModel model = (DefaultTableModel) jTable4.getModel(); // get the table
+            model.setRowCount(0);
+
+            
+            String IDLoaiP = "'" + jComboBox1.getSelectedItem().toString().subSequence(0, 5) + "'"; // lay ID
+            String query = "SELECT * FROM Phong " +
+                           "JOIN loaiphong ON loaiphong.IDLoai = phong.IDLoai " +
+                           "WHERE phong.IDLoai = ";
+            String fullSQL = query.concat(IDLoaiP); // Ket noi ID phong vao sql
+            System.out.println(fullSQL);
+            ResultSet rs = st.executeQuery(fullSQL);
+            
+            while (rs.next()) {
+                String ID = rs.getString(1);
+                String tenPhong = rs.getString(2);
+                String trangThaiPhong = rs.getString(3);
+                String giaPhong = rs.getString(4);
+                String IDTang = rs.getString(5);
+                String IDKV = rs.getString(6);
+                String IDLoai = rs.getString(7);
+
+                String[] row = {ID, tenPhong, trangThaiPhong, giaPhong, IDTang, IDKV, IDLoai};
+                model.addRow(row);
+            }
+            
+            
+            
+            st.close();
+            con.close();
+            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
@@ -5432,124 +5605,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
         jSpinner2.setValue(1);
     }//GEN-LAST:event_jButton36ActionPerformed
 
-    public boolean isDate(JTextField txt) {
-        String format = "yyyy-MM-dd";
-        SimpleDateFormat sdf = new SimpleDateFormat(format);
-        
-        try {
-            Date date = sdf.parse(txt.getText());
-            return date != null;
-        } catch (Exception e) {
-            return false;
-        }
-    }
     
-    public int[] dsKM() {
-        int[] t = null;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-            
-            ArrayList<Integer> tmp = new ArrayList<>(); // List dung de chua cac ty le 
-            
-            String sql = "SELECT tyLe FROM khuyenmai WHERE ngayKT >= CURRENT_DATE AND ngayBD <= CURRENT_DATE";
-            ResultSet rs = st.executeQuery(sql);
-            
-            while (rs.next()) {
-                int TL = rs.getInt(1);
-                tmp.add(TL);
-            }
-            int[] dsTL = tmp.stream().mapToInt(Integer::intValue).toArray();;
-            
-            return dsTL;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return t;
-    }
-    
-    public int giaPhong(String IDPhong) {
-        int gia = 0;
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement();
-
-            String ID = "'" + IDPhong + "'"; // lay ID cua DV
-            String query = "SELECT giaPhong FROM phong WHERE IDPhong = ";
-            String SQL = query.concat(ID); // Ket noi ID vao sql
-            System.out.println(SQL);
-            
-            ResultSet rs = st.executeQuery(SQL);
-            rs.next();
-            gia = rs.getInt(1);
-            
-            return gia;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return gia;
-    }
-    
-    public double[] dsTL_decimal() {
-        int[] listTL = dsKM();
-        double[] dsTL = new double[listTL.length];
-        
-        for (int i=0; i<listTL.length; i++) {
-            double tmp = listTL[i] / 100.0;
-            dsTL[i] = (float) 1 - tmp;
-            System.out.print(dsTL[i]);
-        }
-        
-        return dsTL;
-    }
-    
-    public String autoThuePhong() {
-        String id = "";
-        try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
-            Statement st = (Statement) con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            
-            String query = "SELECT IDthue FROM thuephong ORDER BY IDthue";
-            ResultSet rs = st.executeQuery(query);
-            
-            rs.last();
-            String lastID = rs.getString(1);
-            // tim ID cuoi cung trong csdl
-            
-            String newIDnum, TP = "TP00", TP2 = "NV0", TP3 = "TP", newID="";
-            
-            int last = Integer.parseInt(lastID.substring(2, 5));
-            last++;
-            newIDnum = Integer.toString(last);
-            System.out.println(newIDnum);
-
-            switch (newIDnum.length()) {
-                case 1:
-                    newID = TP.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-                case 2:
-                    newID = TP2.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-                case 3:
-                    newID = TP3.concat(newIDnum);
-                    System.out.println(newID);
-                    break;
-            }
-             
-            st.close();
-            con.close();
-            
-            return newID;
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return id;
-    }
     
     private void jButton30ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton30ActionPerformed
         // Thue Phong
@@ -5569,7 +5625,7 @@ public class HoltelMagReal extends javax.swing.JFrame {
             PreparedStatement ps = con.prepareStatement(test);
             
             ps.setString(1, autoThuePhong());
-            ps.setString(2, jComboBox2.getSelectedItem().toString()); // id khach hang
+            ps.setString(2, khachdat.getText()); // id khach hang
             ps.setString(3, jTextField26.getText()); // id phong
             ps.setString(4, jTextField27.getText()); // ngay thue
             ps.setString(5, jTextField28.getText()); // ngay tra
@@ -5701,18 +5757,13 @@ public class HoltelMagReal extends javax.swing.JFrame {
             e.printStackTrace();
         }
     }//GEN-LAST:event_jButton11ActionPerformed
-
-    public void ngonNgu() {
-        // Phin lam here
-    }
-    
     
     
     private void MainTabbedPaneStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_MainTabbedPaneStateChanged
         // TODO add your handling code here:
         // ham nay de bien tab ngon ngu giong button
         if (MainTabbedPane.getSelectedIndex() == 4) {
-            ngonNgu();
+            //ngonNgu();
             MainTabbedPane.setSelectedIndex(languageTab);
         }
         
@@ -5799,7 +5850,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private javax.swing.JButton jButton36;
     private javax.swing.JButton jButton37;
     private javax.swing.JButton jButton38;
-    private javax.swing.JButton jButton39;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton40;
     private javax.swing.JButton jButton41;
@@ -5816,7 +5866,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JComboBox<String> jComboBox5;
@@ -6109,5 +6158,6 @@ public class HoltelMagReal extends javax.swing.JFrame {
     private keeptoo.KGradientPanel kGradientPanel7;
     private keeptoo.KGradientPanel kGradientPanel8;
     private keeptoo.KGradientPanel kGradientPanel9;
+    private javax.swing.JTextField khachdat;
     // End of variables declaration//GEN-END:variables
 }

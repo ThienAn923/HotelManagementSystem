@@ -28,7 +28,11 @@ public class ThemPhong extends javax.swing.JFrame {
      */
     public ThemPhong() {
         initComponents();
+        autoGenComboBox();
         
+    }
+    
+    public void autoGenComboBox() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/hotelmanagement", "root", "");
